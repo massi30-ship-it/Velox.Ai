@@ -3,230 +3,1222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velox AI</title>
-
+<title>Velox AI — AI Chatbots & Receptionists</title>
 <link rel="icon" href="favicon.png1">
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
-  background:#0a0a0a;
-  color:white;
+:root {
+  --bg: #fefce8;
+  --bg2: #fef9c3;
+  --black: #111111;
+  --gray: #555555;
+  --light: #fffde7;
+  --border: #e8e0a0;
+  --card: #fffef0;
 }
 
-/* NAV */
-nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 60px;
-  align-items:center;
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  background: var(--bg);
+  color: var(--black);
+  line-height: 1.6;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
+/* ─── NAV ─── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 70px;
+  background: rgba(254, 252, 232, 0.85);
+  backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
 }
 
-.logo img{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  border:2px solid white;
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-nav a{
-  margin-left:25px;
-  text-decoration:none;
-  color:#aaa;
+.nav-logo img {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
 }
 
-/* HERO */
-.hero{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  max-width:1200px;
-  margin:auto;
-  padding:120px 20px;
-  gap:40px;
-  flex-wrap:wrap;
+.nav-logo span {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--black);
 }
 
-.left{
-  flex:1;
-  min-width:300px;
+.nav-links a {
+  margin-left: 32px;
+  text-decoration: none;
+  color: var(--gray);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
-.left h1{
-  font-size:58px;
-  line-height:1.1;
+.nav-links a:hover { color: var(--black); }
+
+.nav-cta {
+  margin-left: 32px;
+  background: var(--black) !important;
+  color: white !important;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 14px !important;
+  font-weight: 600 !important;
 }
 
-.left p{
-  margin-top:20px;
-  color:#aaa;
-  font-size:18px;
+/* ─── HERO ─── */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 40px 100px;
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
-.btn{
-  margin-top:30px;
-  display:inline-block;
-  padding:14px 35px;
-  background:white;
-  color:black;
-  border-radius:30px;
-  text-decoration:none;
+.hero-left { flex: 1; min-width: 320px; }
+
+.hero-badge {
+  display: inline-block;
+  background: var(--black);
+  color: #fef08a;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
 }
 
-/* CHAT PREVIEW */
-.chat{
-  flex:1;
-  min-width:300px;
-  background:#111;
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+.hero-left h1 {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: var(--black);
 }
 
-.msg{
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:10px;
-  max-width:70%;
+.hero-left h1 span {
+  background: linear-gradient(135deg, #ca8a04, #111);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.bot{
-  background:#222;
+.hero-left p {
+  margin-top: 24px;
+  font-size: 19px;
+  color: var(--gray);
+  max-width: 480px;
+  line-height: 1.7;
 }
 
-.user{
-  background:white;
-  color:black;
-  margin-left:auto;
+.hero-btns { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn-primary {
+  padding: 15px 32px;
+  background: var(--black);
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* SECTIONS */
-.section{
-  max-width:1100px;
-  margin:auto;
-  padding:100px 20px;
+.btn-primary:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+.btn-secondary {
+  padding: 15px 32px;
+  background: transparent;
+  color: var(--black);
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  border: 2px solid var(--black);
+  transition: background 0.2s;
 }
 
-.section h2{
-  font-size:32px;
-  margin-bottom:20px;
+.btn-secondary:hover { background: var(--black); color: white; }
+
+/* HERO CHAT */
+.hero-right { flex: 1; min-width: 320px; }
+
+.chat-card {
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+  overflow: hidden;
+  border: 1px solid var(--border);
 }
 
-/* CARDS */
-.cards{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
+.chat-card-header {
+  background: var(--black);
+  color: white;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.card{
-  flex:1;
-  min-width:280px;
-  padding:25px;
-  border-radius:20px;
-  background:#111;
-  border:1px solid #222;
+.chat-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; }
+
+.chat-messages { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+
+.msg {
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  max-width: 78%;
+  line-height: 1.5;
 }
 
-/* CONTACT */
-.contact a{
-  display:block;
-  margin:10px 0;
-  color:white;
-  text-decoration:none;
+.msg.bot { background: var(--bg2); border-radius: 16px 16px 16px 4px; }
+.msg.user { background: var(--black); color: white; align-self: flex-end; border-radius: 16px 16px 4px 16px; }
+
+.chat-input-row {
+  display: flex;
+  padding: 12px 16px;
+  border-top: 1px solid #f0f0f0;
+  gap: 10px;
 }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:40px;
-  color:#777;
+.chat-input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 13px;
+  background: var(--bg);
+  outline: none;
+}
+
+.chat-input-row button {
+  padding: 10px 18px;
+  background: var(--black);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ─── STATS ─── */
+.stats {
+  background: var(--black);
+  color: white;
+  padding: 50px 40px;
+}
+
+.stats-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  text-align: center;
+}
+
+.stat-num { font-size: 42px; font-weight: 700; color: #fef08a; }
+.stat-label { font-size: 14px; color: #aaa; margin-top: 4px; }
+
+/* ─── SECTIONS ─── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 110px 40px;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #92400e;
+  margin-bottom: 16px;
+}
+
+.section h2 {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  margin-bottom: 16px;
+}
+
+.section > p {
+  font-size: 18px;
+  color: var(--gray);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 50px;
+}
+
+/* ─── SERVICE CARDS ─── */
+.cards { display: flex; gap: 22px; flex-wrap: wrap; }
+
+.card {
+  flex: 1;
+  min-width: 280px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 32px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--black);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+.card p { font-size: 14px; color: var(--gray); margin-bottom: 16px; line-height: 1.6; }
+.card ul { padding-left: 18px; }
+.card ul li { font-size: 14px; color: var(--gray); margin-bottom: 6px; }
+
+/* ─── HOW IT WORKS ─── */
+.steps { display: flex; flex-direction: column; gap: 0; }
+
+.step {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.step:last-child { border-bottom: none; }
+
+.step-num {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--border);
+  min-width: 70px;
+  line-height: 1;
+}
+
+.step-content h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.step-content p { font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+/* ─── PRICING ─── */
+.pricing-bg {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 10px 24px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+  background: var(--black);
+  color: white;
+  border-color: var(--black);
+}
+
+.plans { display: none; }
+.plans.active { display: flex; gap: 22px; flex-wrap: wrap; }
+
+.plan {
+  flex: 1;
+  min-width: 260px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 30px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.plan:hover { transform: translateY(-6px); }
+
+.plan.popular {
+  border: 2px solid var(--black);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  color: #fef08a;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.plan h3 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.plan .plan-desc { font-size: 13px; color: var(--gray); margin-bottom: 18px; }
+.plan .price { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+.plan .price span { font-size: 16px; font-weight: 500; color: var(--gray); }
+.plan .billing { font-size: 12px; color: var(--gray); margin-bottom: 22px; }
+
+.plan ul { list-style: none; padding: 0; margin-bottom: 24px; }
+.plan ul li {
+  font-size: 13px;
+  color: #333;
+  padding: 7px 0;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plan ul li::before { content: "✓"; font-weight: 700; color: #16a34a; }
+
+.plan-btn {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  background: var(--black);
+  color: white;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.plan-btn:hover { opacity: 0.85; }
+
+/* ─── TRUST ─── */
+.trust-grid { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+
+.trust-item {
+  flex: 1;
+  min-width: 200px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+  text-align: center;
+}
+
+.trust-item .t-icon { font-size: 32px; margin-bottom: 12px; }
+.trust-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.trust-item p { font-size: 13px; color: var(--gray); }
+
+/* ─── FAQ ─── */
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+  cursor: pointer;
+}
+
+.faq-item summary {
+  font-size: 17px;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-item summary::after { content: "+"; font-size: 22px; color: var(--gray); }
+details[open] summary::after { content: "−"; }
+
+.faq-item p { margin-top: 14px; font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+/* ─── CONTACT ─── */
+.contact-section { background: var(--black); }
+
+.contact-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 110px 40px;
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contact-left { flex: 1; min-width: 300px; }
+.contact-left h2 { font-size: 44px; font-weight: 700; letter-spacing: -1.5px; color: white; margin-bottom: 16px; }
+.contact-left p { font-size: 17px; color: #aaa; line-height: 1.7; }
+
+.contact-right { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 16px; }
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #1a1a1a;
+  padding: 20px 24px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.2s;
+  border: 1px solid #2a2a2a;
+}
+
+.contact-link:hover { background: #222; }
+.contact-link .c-icon { font-size: 22px; }
+.contact-link .c-info .c-label { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.contact-link .c-info .c-val { font-size: 15px; font-weight: 600; color: white; }
+
+.avail-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #aaa;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.avail-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0a0a0a;
+  text-align: center;
+  padding: 40px;
+  color: #555;
+  font-size: 14px;
+  border-top: 1px solid #1a1a1a;
+}
+
+footer span { color: #888; }
+
+/* ─── LIVE CHATBOT WIDGET ─── */
+.chat-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+}
+
+.chat-toggle {
+  width: 56px;
+  height: 56px;
+  background: var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  margin-left: auto;
+}
+
+.chat-popup {
+  display: none;
+  width: 320px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+.chat-popup.open { display: block; }
+
+.chat-popup-header {
+  background: var(--black);
+  color: white;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.chat-popup-msgs {
+  height: 220px;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--bg);
+}
+
+.chat-popup-msgs .msg { font-size: 13px; }
+
+.chat-popup-input {
+  display: flex;
+  border-top: 1px solid var(--border);
+  background: white;
+}
+
+.chat-popup-input input {
+  flex: 1;
+  padding: 12px 14px;
+  border: none;
+  font-size: 13px;
+  outline: none;
+  background: white;
+}
+
+.chat-popup-input button {
+  padding: 12px 16px;
+  background: var(--black);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 70px 24px 60px; }
+  .hero-left h1 { font-size: 40px; }
+  .section { padding: 70px 24px; }
+  .section h2 { font-size: 32px; }
+  .contact-inner { padding: 70px 24px; }
+  .contact-left h2 { font-size: 32px; }
 }
 </style>
 </head>
-
 <body>
 
-<!-- NAV -->
+<!-- ═══════════════ NAV ═══════════════ -->
 <nav>
-  <div class="logo">
-    <img src="favicon.png1">
-    <h2>Velox AI</h2>
+  <div class="nav-logo">
+    <img src="favicon.png1" alt="Velox AI Logo">
+    <span>Velox AI</span>
   </div>
-
-  <div>
+  <div class="nav-links">
     <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+    <a href="#how">How it Works</a>
+    <a href="#pricing">Plans</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="nav-cta">Contact Us</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
-
-  <div class="left">
-    <h1>Never miss a customer again</h1>
-    <p>AI chatbots and receptionists built for modern businesses</p>
-    <a class="btn" href="#contact">Get Started</a>
+  <div class="hero-left">
+    <div class="hero-badge">AI Automation Agency</div>
+    <h1>Never miss a <span>customer</span> again</h1>
+    <p>We build AI chatbots and receptionists that talk to your customers, capture leads, and run your front desk — 24 hours a day, 7 days a week.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get a Free Demo</a>
+      <a href="#pricing" class="btn-secondary">View Plans</a>
+    </div>
   </div>
 
-  <div class="chat">
-    <div class="msg bot">Hi! How can I help you?</div>
-    <div class="msg user">Do you take bookings?</div>
-    <div class="msg bot">Yes, we can handle bookings automatically.</div>
-    <div class="msg user">Can you work 24/7?</div>
-    <div class="msg bot">Yes, your AI assistant runs all day without missing leads.</div>
+  <div class="hero-right">
+    <div class="chat-card">
+      <div class="chat-card-header">
+        <div class="chat-dot"></div>
+        Velox AI — Live Demo
+      </div>
+      <div class="chat-messages">
+        <div class="msg bot">👋 Hi! I'm your AI assistant. How can I help you today?</div>
+        <div class="msg user">Do you take appointments?</div>
+        <div class="msg bot">Yes! I can book appointments for you instantly. What date works best?</div>
+        <div class="msg user">Do you work after hours?</div>
+        <div class="msg bot">Absolutely — I'm available 24/7, so your business never misses a lead.</div>
+      </div>
+      <div class="chat-input-row">
+        <input placeholder="Try typing a message..." id="heroInput">
+        <button onclick="heroSend()">Send</button>
+      </div>
+    </div>
   </div>
-
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="section">
-  <h2>What we do</h2>
+<!-- ═══════════════ STATS ═══════════════ -->
+<div class="stats">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Always Available</div>
+    </div>
+    <div>
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Setup Fee on Select Plans</div>
+    </div>
+    <div>
+      <div class="stat-num">48h</div>
+      <div class="stat-label">Average Setup Time</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Custom Built for You</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section class="section" id="services">
+  <div class="section-label">What We Offer</div>
+  <h2>Three powerful AI systems</h2>
+  <p>Whether you need to answer questions, book appointments, or fully automate your front desk — we build it all, custom to your business.</p>
 
   <div class="cards">
-
     <div class="card">
-      <h3>AI Chatbots</h3>
-      <p>Answer customer questions instantly and capture leads</p>
+      <div class="card-icon">💬</div>
+      <h3>AI Chatbot</h3>
+      <p>A smart AI that lives on your website and instantly answers any question your customers have — day or night.</p>
+      <ul>
+        <li>Instant replies to customer questions</li>
+        <li>Embedded on your website</li>
+        <li>Captures leads automatically</li>
+        <li>Handles FAQs and product info</li>
+        <li>Custom tone & brand voice</li>
+        <li>Works on mobile & desktop</li>
+      </ul>
     </div>
 
     <div class="card">
+      <div class="card-icon">📞</div>
       <h3>AI Receptionist</h3>
-      <p>Handles messages, bookings, and customer inquiries 24/7</p>
+      <p>A fully automated receptionist that handles messages, books appointments, and responds to every inquiry without you lifting a finger.</p>
+      <ul>
+        <li>Handles all incoming inquiries</li>
+        <li>Appointment & booking support</li>
+        <li>WhatsApp or website integration</li>
+        <li>Custom business hours logic</li>
+        <li>Lead collection & routing</li>
+        <li>No missed messages ever</li>
+      </ul>
     </div>
 
     <div class="card">
-      <h3>Full Automation</h3>
-      <p>Complete AI system replacing your front desk</p>
+      <div class="card-icon">⚡</div>
+      <h3>Hybrid AI System</h3>
+      <p>The full package — chatbot and receptionist combined into one intelligent system that handles everything from first contact to booking confirmation.</p>
+      <ul>
+        <li>Everything in Chatbot + Receptionist</li>
+        <li>Advanced AI workflow automation</li>
+        <li>Multi-channel (web + WhatsApp)</li>
+        <li>Smart routing & escalation</li>
+        <li>Full business automation</li>
+        <li>Priority setup & support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section class="section" id="how" style="border-top: 1px solid var(--border);">
+  <div class="section-label">The Process</div>
+  <h2>From idea to live in 48 hours</h2>
+  <p>We handle everything. You don't need to be technical — just tell us about your business and we'll take it from there.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Free Consultation</h3>
+        <p>We start with a quick conversation — on WhatsApp, email, or Instagram — to understand your business, your customers, and what you need the AI to do. No technical knowledge required.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>We Build Your AI</h3>
+        <p>We customize the AI specifically for your business. It learns your services, your tone, your FAQs, your hours, and how you want customers to be handled. This is not a generic bot — it's yours.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>We Set Everything Up</h3>
+        <p>We install and integrate the AI on your website or WhatsApp. We test it thoroughly to make sure it handles every scenario correctly before going live.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>You Go Live & Grow</h3>
+        <p>Your AI starts working immediately — answering questions, capturing leads, booking appointments. You get more customers without any extra effort from your team.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h3>Ongoing Support</h3>
+        <p>We stay available every day after launch. Need an update, a new question added, or a change in your hours? Just message us and we handle it fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRICING ═══════════════ -->
+<div class="pricing-bg">
+<section class="section" id="pricing">
+  <div class="section-label">Pricing</div>
+  <h2>Simple, affordable plans</h2>
+  <p>All plans are custom-built for your business. No hidden fees. Cancel anytime. Cheaper than hiring a receptionist.</p>
+
+  <div class="pricing-tabs">
+    <button class="tab-btn active" onclick="showPlans('chatbot', this)">AI Chatbot</button>
+    <button class="tab-btn" onclick="showPlans('receptionist', this)">AI Receptionist</button>
+    <button class="tab-btn" onclick="showPlans('hybrid', this)">Hybrid System</button>
+  </div>
+
+  <!-- CHATBOT PLANS -->
+  <div class="plans active" id="chatbot">
+    <div class="plan">
+      <h3>Starter</h3>
+      <div class="plan-desc">Perfect for small businesses just getting started</div>
+      <div class="price">$39<span>/mo</span></div>
+      <div class="billing">Billed monthly · Setup included</div>
+      <ul>
+        <li>Basic AI chatbot</li>
+        <li>Up to 200 conversations/month</li>
+        <li>FAQ automation</li>
+        <li>Lead capture form</li>
+        <li>Website integration</li>
+        <li>Email support</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
     </div>
 
+    <div class="plan popular">
+      <div class="popular-badge">Most Popular</div>
+      <h3>Growth</h3>
+      <div class="plan-desc">Best for growing businesses that need more</div>
+      <div class="price">$79<span>/mo</span></div>
+      <div class="billing">Billed monthly · Setup included</div>
+      <ul>
+        <li>Advanced AI chatbot</li>
+        <li>Unlimited conversations</li>
+        <li>Custom tone & responses</li>
+        <li>Lead capture + WhatsApp routing</li>
+        <li>Business hours logic</li>
+        <li>Monthly updates</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan">
+      <h3>Pro</h3>
+      <div class="plan-desc">Full-power chatbot with deep customization</div>
+      <div class="price">$129<span>/mo</span></div>
+      <div class="billing">Billed monthly · Free setup</div>
+      <ul>
+        <li>Everything in Growth</li>
+        <li>Multi-language support</li>
+        <li>Advanced lead scoring</li>
+        <li>Product/service catalogue AI</li>
+        <li>CRM-ready data export</li>
+        <li>Bi-weekly updates</li>
+        <li>Dedicated account manager</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+  </div>
+
+  <!-- RECEPTIONIST PLANS -->
+  <div class="plans" id="receptionist">
+    <div class="plan">
+      <h3>Basic Receptionist</h3>
+      <div class="plan-desc">Great for solo businesses & clinics</div>
+      <div class="price">$59<span>/mo</span></div>
+      <div class="billing">Billed monthly · Setup included</div>
+      <ul>
+        <li>AI handles all incoming messages</li>
+        <li>Basic appointment booking</li>
+        <li>WhatsApp integration</li>
+        <li>Business hours auto-reply</li>
+        <li>Up to 300 interactions/month</li>
+        <li>Email support</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan popular">
+      <div class="popular-badge">Most Popular</div>
+      <h3>Pro Receptionist</h3>
+      <div class="plan-desc">For businesses serious about automation</div>
+      <div class="price">$119<span>/mo</span></div>
+      <div class="billing">Billed monthly · Setup included</div>
+      <ul>
+        <li>Unlimited message handling</li>
+        <li>Advanced booking management</li>
+        <li>WhatsApp + website integration</li>
+        <li>Smart routing to staff</li>
+        <li>Custom greeting & tone</li>
+        <li>No-show follow-up messages</li>
+        <li>Priority support every day</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan">
+      <h3>Elite Receptionist</h3>
+      <div class="plan-desc">Full-service AI front desk replacement</div>
+      <div class="price">$179<span>/mo</span></div>
+      <div class="billing">Billed monthly · Free setup</div>
+      <ul>
+        <li>Everything in Pro Receptionist</li>
+        <li>Multi-staff routing logic</li>
+        <li>Appointment reminders</li>
+        <li>Customer follow-up sequences</li>
+        <li>Full conversation history logs</li>
+        <li>Monthly performance reports</li>
+        <li>Dedicated manager</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+  </div>
+
+  <!-- HYBRID PLANS -->
+  <div class="plans" id="hybrid">
+    <div class="plan">
+      <h3>Hybrid Starter</h3>
+      <div class="plan-desc">Chatbot + Receptionist in one affordable bundle</div>
+      <div class="price">$99<span>/mo</span></div>
+      <div class="billing">Billed monthly · Setup included</div>
+      <ul>
+        <li>AI chatbot on your website</li>
+        <li>AI receptionist via WhatsApp</li>
+        <li>Lead capture on both channels</li>
+        <li>Basic booking system</li>
+        <li>FAQ automation</li>
+        <li>Monthly updates</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan popular">
+      <div class="popular-badge">Best Value</div>
+      <h3>Hybrid Pro</h3>
+      <div class="plan-desc">The complete AI front desk — fully automated</div>
+      <div class="price">$169<span>/mo</span></div>
+      <div class="billing">Billed monthly · Free setup</div>
+      <ul>
+        <li>Everything in both Pro plans</li>
+        <li>Multi-channel AI (web + WhatsApp)</li>
+        <li>Smart escalation to human staff</li>
+        <li>Advanced booking & scheduling</li>
+        <li>Full lead management</li>
+        <li>Bi-weekly updates</li>
+        <li>Priority daily support</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan">
+      <h3>Hybrid Elite</h3>
+      <div class="plan-desc">Max automation for established businesses</div>
+      <div class="price">$249<span>/mo</span></div>
+      <div class="billing">Billed monthly · Free setup + consultation</div>
+      <ul>
+        <li>Everything in Hybrid Pro</li>
+        <li>Custom AI workflow design</li>
+        <li>Multi-language AI</li>
+        <li>CRM & calendar integrations</li>
+        <li>Customer follow-up sequences</li>
+        <li>Weekly performance reports</li>
+        <li>Dedicated account manager</li>
+      </ul>
+      <a href="https://wa.me/96171565356" class="plan-btn">Get Started</a>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<!-- ═══════════════ WHO WE SERVE ═══════════════ -->
+<section class="section" style="border-top: 1px solid var(--border);">
+  <div class="section-label">Industries</div>
+  <h2>Built for businesses like yours</h2>
+  <p>Every AI system we build is 100% customized for your specific industry and business type.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🦷</div>
+      <h3>Clinics & Dental Offices</h3>
+      <p>Book appointments, answer insurance questions, send reminders, and handle patient inquiries automatically.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💅</div>
+      <h3>Salons & Beauty</h3>
+      <p>Let clients book appointments, ask about services and pricing, and confirm bookings — all without you answering the phone.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍽️</div>
+      <h3>Restaurants</h3>
+      <p>Handle reservation requests, menu questions, delivery inquiries, and more — automatically, 24/7.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚖️</div>
+      <h3>Law Firms</h3>
+      <p>Screen inquiries, capture lead details, answer general questions, and book consultations professionally.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏋️</div>
+      <h3>Gyms & Fitness</h3>
+      <p>Answer membership questions, book trial sessions, share pricing, and handle all initial client inquiries.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <h3>Real Estate</h3>
+      <p>Qualify leads, answer property questions, schedule viewings, and follow up with interested buyers automatically.</p>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <h2>Contact</h2>
+<!-- ═══════════════ TRUST ═══════════════ -->
+<section class="section" style="background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); max-width: 100%; padding: 80px 0;">
+  <div style="max-width: 1100px; margin: auto; padding: 0 40px;">
+    <div class="section-label">Why Velox AI</div>
+    <h2>Why businesses choose us</h2>
 
-  <div class="contact">
-    <a href="https://wa.me/96171565356">WhatsApp: 71565356</a>
-    <a href="mailto:velox.agency1@gmail.com">velox.agency1@gmail.com</a>
-    <a href="https://instagram.com/get.velox.ai">@get.velox.ai</a>
+    <div class="trust-grid" style="margin-top: 40px;">
+      <div class="trust-item">
+        <div class="t-icon">⚡</div>
+        <h4>Fast Setup</h4>
+        <p>Most clients go live within 24–48 hours of signing up.</p>
+      </div>
+      <div class="trust-item">
+        <div class="t-icon">💰</div>
+        <h4>Costs Less Than Staff</h4>
+        <p>Cheaper than hiring a part-time receptionist, and available 24/7.</p>
+      </div>
+      <div class="trust-item">
+        <div class="t-icon">🎯</div>
+        <h4>100% Custom</h4>
+        <p>Not a generic bot. Built specifically for your business and brand.</p>
+      </div>
+      <div class="trust-item">
+        <div class="t-icon">📱</div>
+        <h4>Every Channel</h4>
+        <p>Works on your website, WhatsApp, and anywhere your customers are.</p>
+      </div>
+      <div class="trust-item">
+        <div class="t-icon">🔄</div>
+        <h4>Always Updated</h4>
+        <p>We update your AI when your business changes. No extra charges.</p>
+      </div>
+      <div class="trust-item">
+        <div class="t-icon">📞</div>
+        <h4>Daily Support</h4>
+        <p>We're available every single day. Message us anytime on WhatsApp.</p>
+      </div>
+    </div>
   </div>
-
-  <p>Available every day</p>
 </section>
 
+<!-- ═══════════════ FAQ ═══════════════ -->
+<section class="section" id="faq">
+  <div class="section-label">FAQ</div>
+  <h2>Common questions</h2>
+  <p>Everything you need to know before getting started.</p>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>What's the difference between a chatbot and an AI receptionist?</summary>
+      <p>A chatbot sits on your website and answers questions from visitors. An AI receptionist handles incoming messages (WhatsApp, DMs, inquiries) and can manage bookings and customer communication like a real front desk. A hybrid system does both.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do I need a website to use this?</summary>
+      <p>No. If you don't have a website, we can set up the AI receptionist via WhatsApp so you still get full automation. A website is only required for the chatbot feature.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How long does the setup take?</summary>
+      <p>Most setups are completed within 24 to 48 hours. We ask you a few questions about your business, then we build and install everything. You don't need to do any technical work.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can you customize it for my specific business?</summary>
+      <p>Yes — every single system we build is 100% custom. The AI learns your services, your tone, your FAQs, your pricing, your hours, and exactly how you want to communicate with customers.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How much does it cost to run monthly?</summary>
+      <p>Our plans start from $39/month. The AI runs on a small API usage cost which we keep as low as possible — some setups operate for as little as $20/month in usage costs, meaning our plans are priced fairly and profitably for everyone.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What happens if I need changes after launch?</summary>
+      <p>Just message us. We're available every day and handle updates, new questions, hour changes, and any adjustments quickly. Updates are included in most plans.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How do I get started?</summary>
+      <p>Simply contact us on WhatsApp, email, or Instagram. We'll start with a free consultation, understand your business, and recommend the best plan. No commitment needed to chat with us.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2>Ready to automate your business?</h2>
+      <p>Contact us today for a free consultation. We'll show you exactly what an AI system would look like for your business — no commitment required.</p>
+      <div class="avail-tag" style="margin-top: 28px;">
+        <div class="avail-dot"></div>
+        Available every day — We respond fast
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <a href="https://wa.me/96171565356" class="contact-link">
+        <div class="c-icon">💬</div>
+        <div class="c-info">
+          <div class="c-label">WhatsApp</div>
+          <div class="c-val">71 565 356</div>
+        </div>
+      </a>
+      <a href="mailto:velox.agency1@gmail.com" class="contact-link">
+        <div class="c-icon">✉️</div>
+        <div class="c-info">
+          <div class="c-label">Email</div>
+          <div class="c-val">velox.agency1@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://instagram.com/get.velox.ai" class="contact-link">
+        <div class="c-icon">📸</div>
+        <div class="c-info">
+          <div class="c-label">Instagram</div>
+          <div class="c-val">@get.velox.ai</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
-Velox AI — AI Chatbots & Receptionists
+  <span>Velox AI</span> — AI Chatbots & Receptionists for Modern Businesses<br>
+  <span style="font-size:12px;">© 2025 Velox AI · Available every day · velox.agency1@gmail.com</span>
 </footer>
+
+<!-- ═══════════════ LIVE CHAT WIDGET ═══════════════ -->
+<div class="chat-widget">
+  <div class="chat-popup" id="chatPopup">
+    <div class="chat-popup-header">
+      <div class="chat-dot"></div>
+      Velox AI — Chat with us
+    </div>
+    <div class="chat-popup-msgs" id="popupMsgs">
+      <div class="msg bot">👋 Hi! I'm your Velox AI demo assistant. Ask me anything!</div>
+    </div>
+    <div class="chat-popup-input">
+      <input id="popupInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') popupSend()">
+      <button onclick="popupSend()">→</button>
+    </div>
+  </div>
+  <div class="chat-toggle" onclick="toggleChat()">💬</div>
+</div>
+
+<script>
+// ─── PRICING TABS ───
+function showPlans(id, btn) {
+  document.querySelectorAll('.plans').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── HERO CHAT ───
+const heroBotReplies = [
+  "That's a great question! We can handle that for your business automatically.",
+  "Yes, we can set that up for you! Our AI works 24/7 so you never miss a customer.",
+  "Absolutely! We customize everything specifically for your business.",
+  "Our AI can handle that and much more. Want to know how? Contact us on WhatsApp!",
+  "Great — this is exactly what our AI is built for. We'd love to set it up for you!"
+];
+let heroIdx = 0;
+function heroSend() {
+  const input = document.getElementById('heroInput');
+  if (!input.value.trim()) return;
+  const msgs = document.querySelector('.chat-messages');
+  msgs.innerHTML += `<div class="msg user">${input.value}</div>`;
+  input.value = '';
+  setTimeout(() => {
+    msgs.innerHTML += `<div class="msg bot">${heroBotReplies[heroIdx % heroBotReplies.length]}</div>`;
+    heroIdx++;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 700);
+}
+document.getElementById('heroInput').addEventListener('keydown', e => { if(e.key==='Enter') heroSend(); });
+
+// ─── WIDGET CHAT ───
+const widgetReplies = [
+  "Thanks for reaching out! We'd love to help your business automate. Contact us on WhatsApp: 71565356",
+  "Great question! Our AI can handle that automatically for your business.",
+  "We work with all kinds of businesses — clinics, salons, restaurants, law firms, and more.",
+  "Setup typically takes 24–48 hours and we handle everything for you.",
+  "Our plans start from just $39/month. Message us on WhatsApp for a free demo!"
+];
+let widgetIdx = 0;
+
+function toggleChat() {
+  const popup = document.getElementById('chatPopup');
+  popup.classList.toggle('open');
+}
+
+function popupSend() {
+  const input = document.getElementById('popupInput');
+  const msgs = document.getElementById('popupMsgs');
+  if (!input.value.trim()) return;
+  msgs.innerHTML += `<div class="msg user">${input.value}</div>`;
+  input.value = '';
+  setTimeout(() => {
+    msgs.innerHTML += `<div class="msg bot">${widgetReplies[widgetIdx % widgetReplies.length]}</div>`;
+    widgetIdx++;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 800);
+}
+</script>
 
 </body>
 </html>
