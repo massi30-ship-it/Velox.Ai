@@ -4,122 +4,130 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Velox AI</title>
-<link rel="icon" href="favicon.png">
+
+<!-- ✅ YOUR LOGO -->
+<link rel="icon" type="image/png" href="favicon.png1">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  background: #ffffff;
-  color: #111;
-  line-height: 1.6;
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+  background:#fff;
+  color:#111;
 }
 
 /* NAV */
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 60px;
-  border-bottom: 1px solid #eee;
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 60px;
+  position:sticky;
+  top:0;
+  background:white;
+  border-bottom:1px solid #eee;
 }
 
-nav h2 {
-  font-size: 18px;
+nav h2{
+  font-weight:600;
 }
 
-nav a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #555;
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#555;
+  font-size:14px;
 }
 
 /* HERO */
-.hero {
-  text-align: center;
-  padding: 120px 20px;
+.hero{
+  text-align:center;
+  padding:140px 20px;
 }
 
-.hero h1 {
-  font-size: 56px;
-  margin-bottom: 20px;
+.hero h1{
+  font-size:64px;
+  font-weight:600;
 }
 
-.hero p {
-  color: #666;
-  font-size: 20px;
+.hero p{
+  margin-top:20px;
+  color:#666;
+  font-size:20px;
 }
 
-.btn {
-  margin-top: 30px;
-  display: inline-block;
-  padding: 14px 30px;
-  border-radius: 30px;
-  background: black;
-  color: white;
-  text-decoration: none;
+.btn{
+  margin-top:40px;
+  display:inline-block;
+  padding:14px 35px;
+  border-radius:30px;
+  background:black;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
 }
 
 /* SECTIONS */
-.section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 100px 20px;
+.section{
+  max-width:1100px;
+  margin:auto;
+  padding:120px 20px;
 }
 
-.section h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
+.section h2{
+  font-size:34px;
 }
 
-.cards {
-  display: flex;
-  gap: 20px;
-  margin-top: 40px;
-  flex-wrap: wrap;
+/* CARDS */
+.cards{
+  display:flex;
+  gap:25px;
+  margin-top:40px;
+  flex-wrap:wrap;
 }
 
-.card {
-  flex: 1;
-  min-width: 280px;
-  padding: 30px;
-  border-radius: 15px;
-  border: 1px solid #eee;
-  transition: 0.3s;
+.card{
+  flex:1;
+  min-width:280px;
+  padding:30px;
+  border-radius:18px;
+  background:#fafafa;
+  transition:0.3s;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.card:hover{
+  transform:translateY(-8px);
 }
 
 /* PRICING */
-.pricing {
-  background: #f9f9f9;
+.pricing{
+  background:#f7f7f7;
 }
 
-.price {
-  font-size: 22px;
-  margin: 10px 0;
+.price{
+  font-size:24px;
+  margin:10px 0;
 }
 
 /* CONTACT */
-.contact a {
-  display: block;
-  margin: 10px 0;
-  color: black;
-  text-decoration: none;
+.contact a{
+  display:block;
+  margin:12px 0;
+  font-size:18px;
+  color:black;
+  text-decoration:none;
 }
 
 /* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px;
-  border-top: 1px solid #eee;
-  margin-top: 50px;
+footer{
+  text-align:center;
+  padding:50px;
+  border-top:1px solid #eee;
+  color:#666;
 }
 </style>
 </head>
@@ -155,31 +163,28 @@ footer {
   <div class="cards">
     <div class="card">
       <h3>AI Chatbots</h3>
-      <p>Smart bots that answer questions instantly and capture leads.</p>
       <ul>
+        <li>Instant replies to customers</li>
         <li>Website integration</li>
-        <li>Instant replies</li>
         <li>Lead capture</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>AI Receptionist</h3>
-      <p>Handles customer messages and bookings automatically.</p>
       <ul>
-        <li>24/7 availability</li>
+        <li>Handles inquiries automatically</li>
         <li>Booking support</li>
-        <li>No missed leads</li>
+        <li>24/7 availability</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Hybrid System</h3>
-      <p>Full automation combining chatbot and receptionist.</p>
       <ul>
-        <li>Advanced workflows</li>
+        <li>Full automation system</li>
+        <li>Chatbot + receptionist</li>
         <li>Best performance</li>
-        <li>Complete automation</li>
       </ul>
     </div>
   </div>
@@ -188,10 +193,10 @@ footer {
 <section class="section">
   <h2>How it works</h2>
   <ol>
-    <li>We analyze your business</li>
+    <li>We understand your business</li>
     <li>We build your AI system</li>
-    <li>We set everything up</li>
-    <li>You start getting more clients</li>
+    <li>We install it</li>
+    <li>You start getting more leads</li>
   </ol>
 </section>
 
@@ -200,32 +205,32 @@ footer {
 
   <div class="cards">
     <div class="card">
-      <h3>Chatbot Starter</h3>
+      <h3>Starter</h3>
       <p class="price">$50/month</p>
       <ul>
         <li>Basic chatbot</li>
-        <li>FAQ answers</li>
+        <li>FAQ responses</li>
         <li>Lead capture</li>
       </ul>
     </div>
 
     <div class="card">
-      <h3>Receptionist Pro</h3>
+      <h3>Pro</h3>
       <p class="price">$120/month</p>
       <ul>
-        <li>Handles inquiries</li>
-        <li>Booking support</li>
-        <li>Priority setup</li>
+        <li>Advanced AI</li>
+        <li>Custom setup</li>
+        <li>Better automation</li>
       </ul>
     </div>
 
     <div class="card">
-      <h3>Full AI System</h3>
+      <h3>Full AI</h3>
       <p class="price">$200/month</p>
       <ul>
         <li>Chatbot + receptionist</li>
         <li>Full automation</li>
-        <li>Best performance</li>
+        <li>Best results</li>
       </ul>
     </div>
   </div>
