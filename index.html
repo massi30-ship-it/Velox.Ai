@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Velox AI</title>
 
-<!-- ✅ YOUR LOGO -->
-<link rel="icon" type="image/png" href="favicon.png1">
+<link rel="icon" href="favicon.png1">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -22,111 +21,141 @@ nav{
   display:flex;
   justify-content:space-between;
   padding:20px 60px;
-  position:sticky;
-  top:0;
-  background:white;
   border-bottom:1px solid #eee;
+  align-items:center;
 }
 
-nav h2{
-  font-weight:600;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  width:40px;
+  height:40px;
+  border-radius:50%;
 }
 
 nav a{
   margin-left:25px;
   text-decoration:none;
   color:#555;
-  font-size:14px;
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:140px 20px;
+  padding:120px 20px;
 }
 
 .hero h1{
-  font-size:64px;
-  font-weight:600;
+  font-size:56px;
 }
 
 .hero p{
-  margin-top:20px;
+  margin-top:15px;
   color:#666;
-  font-size:20px;
+  font-size:18px;
 }
 
 .btn{
-  margin-top:40px;
-  display:inline-block;
-  padding:14px 35px;
-  border-radius:30px;
+  margin-top:30px;
+  padding:12px 30px;
   background:black;
   color:white;
+  border-radius:30px;
   text-decoration:none;
-  transition:0.3s;
 }
 
-.btn:hover{
-  transform:scale(1.05);
+/* CHAT DEMO */
+.chatbox{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:300px;
+  background:white;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  overflow:hidden;
+}
+
+.chat-header{
+  background:black;
+  color:white;
+  padding:10px;
+  font-size:14px;
+}
+
+.chat-messages{
+  height:200px;
+  padding:10px;
+  overflow-y:auto;
+  font-size:14px;
+}
+
+.bot{
+  background:#f1f1f1;
+  padding:8px;
+  border-radius:10px;
+  margin-bottom:8px;
+  max-width:80%;
+}
+
+.user{
+  background:black;
+  color:white;
+  padding:8px;
+  border-radius:10px;
+  margin-bottom:8px;
+  margin-left:auto;
+  max-width:80%;
+}
+
+.chat-input{
+  display:flex;
+  border-top:1px solid #eee;
+}
+
+.chat-input input{
+  flex:1;
+  padding:10px;
+  border:none;
+}
+
+.chat-input button{
+  padding:10px;
+  border:none;
+  background:black;
+  color:white;
+  cursor:pointer;
 }
 
 /* SECTIONS */
 .section{
-  max-width:1100px;
+  max-width:1000px;
   margin:auto;
-  padding:120px 20px;
+  padding:80px 20px;
 }
 
-.section h2{
-  font-size:34px;
-}
-
-/* CARDS */
 .cards{
   display:flex;
-  gap:25px;
-  margin-top:40px;
+  gap:20px;
   flex-wrap:wrap;
+  margin-top:30px;
 }
 
 .card{
   flex:1;
-  min-width:280px;
-  padding:30px;
-  border-radius:18px;
+  min-width:250px;
+  padding:20px;
   background:#fafafa;
-  transition:0.3s;
+  border-radius:15px;
 }
 
-.card:hover{
-  transform:translateY(-8px);
-}
-
-/* PRICING */
-.pricing{
-  background:#f7f7f7;
-}
-
-.price{
-  font-size:24px;
-  margin:10px 0;
-}
-
-/* CONTACT */
-.contact a{
-  display:block;
-  margin:12px 0;
-  font-size:18px;
-  color:black;
-  text-decoration:none;
-}
-
-/* FOOTER */
 footer{
   text-align:center;
-  padding:50px;
-  border-top:1px solid #eee;
+  padding:40px;
   color:#666;
 }
 </style>
@@ -135,10 +164,13 @@ footer{
 <body>
 
 <nav>
-  <h2>Velox AI</h2>
+  <div class="logo">
+    <img src="favicon.png1">
+    <h2>Velox AI</h2>
+  </div>
+
   <div>
     <a href="#services">Services</a>
-    <a href="#pricing">Plans</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -149,108 +181,69 @@ footer{
   <a class="btn" href="#contact">Get Started</a>
 </section>
 
-<section class="section">
+<section class="section" id="services">
   <h2>What we do</h2>
-  <p>
-    We build AI systems that talk to your customers, answer questions,
-    capture leads, and automate your business 24/7.
-  </p>
-</section>
-
-<section id="services" class="section">
-  <h2>Services</h2>
 
   <div class="cards">
     <div class="card">
       <h3>AI Chatbots</h3>
-      <ul>
-        <li>Instant replies to customers</li>
-        <li>Website integration</li>
-        <li>Lead capture</li>
-      </ul>
+      <p>Answer customers instantly and capture leads</p>
     </div>
 
     <div class="card">
       <h3>AI Receptionist</h3>
-      <ul>
-        <li>Handles inquiries automatically</li>
-        <li>Booking support</li>
-        <li>24/7 availability</li>
-      </ul>
+      <p>Handles inquiries and bookings 24/7</p>
     </div>
 
     <div class="card">
-      <h3>Hybrid System</h3>
-      <ul>
-        <li>Full automation system</li>
-        <li>Chatbot + receptionist</li>
-        <li>Best performance</li>
-      </ul>
+      <h3>Full Automation</h3>
+      <p>Complete AI system for your business</p>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <h2>How it works</h2>
-  <ol>
-    <li>We understand your business</li>
-    <li>We build your AI system</li>
-    <li>We install it</li>
-    <li>You start getting more leads</li>
-  </ol>
-</section>
-
-<section id="pricing" class="section pricing">
-  <h2>Plans</h2>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Starter</h3>
-      <p class="price">$50/month</p>
-      <ul>
-        <li>Basic chatbot</li>
-        <li>FAQ responses</li>
-        <li>Lead capture</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Pro</h3>
-      <p class="price">$120/month</p>
-      <ul>
-        <li>Advanced AI</li>
-        <li>Custom setup</li>
-        <li>Better automation</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Full AI</h3>
-      <p class="price">$200/month</p>
-      <ul>
-        <li>Chatbot + receptionist</li>
-        <li>Full automation</li>
-        <li>Best results</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section">
+<section class="section" id="contact">
   <h2>Contact</h2>
-
-  <div class="contact">
-    <a href="https://wa.me/96171565356">WhatsApp: 71565356</a>
-    <a href="mailto:velox.agency1@gmail.com">velox.agency1@gmail.com</a>
-    <a href="https://instagram.com/get.velox.ai">@get.velox.ai</a>
-  </div>
-
-  <p>Available every day</p>
+  <p>WhatsApp: 71565356</p>
+  <p>Email: velox.agency1@gmail.com</p>
+  <p>Instagram: @get.velox.ai</p>
 </section>
 
 <footer>
-  Velox AI — AI Chatbots & Receptionists
+Velox AI — AI Chatbots & Receptionists
 </footer>
+
+<!-- CHATBOT DEMO -->
+<div class="chatbox">
+  <div class="chat-header">Velox AI Assistant</div>
+
+  <div class="chat-messages" id="chat">
+    <div class="bot">Hi! How can I help you?</div>
+  </div>
+
+  <div class="chat-input">
+    <input id="input" placeholder="Type a message...">
+    <button onclick="send()">Send</button>
+  </div>
+</div>
+
+<script>
+function send(){
+  let input = document.getElementById("input");
+  let chat = document.getElementById("chat");
+
+  if(input.value === "") return;
+
+  chat.innerHTML += '<div class="user">'+input.value+'</div>';
+
+  setTimeout(()=>{
+    chat.innerHTML += '<div class="bot">Thanks! We will handle this automatically for your business.</div>';
+    chat.scrollTop = chat.scrollHeight;
+  },1000);
+
+  input.value="";
+}
+</script>
 
 </body>
 </html>
