@@ -12,8 +12,8 @@
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
-  background:#fff;
-  color:#111;
+  background:#0a0a0a;
+  color:white;
 }
 
 /* NAV */
@@ -21,148 +21,141 @@ nav{
   display:flex;
   justify-content:space-between;
   padding:20px 60px;
-  border-bottom:1px solid #eee;
   align-items:center;
 }
 
 .logo{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 }
 
 .logo img{
-  width:40px;
-  height:40px;
+  width:45px;
+  height:45px;
   border-radius:50%;
+  border:2px solid white;
 }
 
 nav a{
   margin-left:25px;
   text-decoration:none;
-  color:#555;
+  color:#aaa;
 }
 
 /* HERO */
 .hero{
-  text-align:center;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:1200px;
+  margin:auto;
   padding:120px 20px;
+  gap:40px;
+  flex-wrap:wrap;
 }
 
-.hero h1{
-  font-size:56px;
+.left{
+  flex:1;
+  min-width:300px;
 }
 
-.hero p{
-  margin-top:15px;
-  color:#666;
+.left h1{
+  font-size:58px;
+  line-height:1.1;
+}
+
+.left p{
+  margin-top:20px;
+  color:#aaa;
   font-size:18px;
 }
 
 .btn{
   margin-top:30px;
-  padding:12px 30px;
-  background:black;
-  color:white;
+  display:inline-block;
+  padding:14px 35px;
+  background:white;
+  color:black;
   border-radius:30px;
   text-decoration:none;
 }
 
-/* CHAT DEMO */
-.chatbox{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:300px;
-  background:white;
-  border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-  overflow:hidden;
+/* CHAT PREVIEW */
+.chat{
+  flex:1;
+  min-width:300px;
+  background:#111;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
 }
 
-.chat-header{
-  background:black;
-  color:white;
+.msg{
   padding:10px;
-  font-size:14px;
-}
-
-.chat-messages{
-  height:200px;
-  padding:10px;
-  overflow-y:auto;
-  font-size:14px;
+  border-radius:10px;
+  margin-bottom:10px;
+  max-width:70%;
 }
 
 .bot{
-  background:#f1f1f1;
-  padding:8px;
-  border-radius:10px;
-  margin-bottom:8px;
-  max-width:80%;
+  background:#222;
 }
 
 .user{
-  background:black;
-  color:white;
-  padding:8px;
-  border-radius:10px;
-  margin-bottom:8px;
+  background:white;
+  color:black;
   margin-left:auto;
-  max-width:80%;
-}
-
-.chat-input{
-  display:flex;
-  border-top:1px solid #eee;
-}
-
-.chat-input input{
-  flex:1;
-  padding:10px;
-  border:none;
-}
-
-.chat-input button{
-  padding:10px;
-  border:none;
-  background:black;
-  color:white;
-  cursor:pointer;
 }
 
 /* SECTIONS */
 .section{
-  max-width:1000px;
+  max-width:1100px;
   margin:auto;
-  padding:80px 20px;
+  padding:100px 20px;
 }
 
+.section h2{
+  font-size:32px;
+  margin-bottom:20px;
+}
+
+/* CARDS */
 .cards{
   display:flex;
   gap:20px;
   flex-wrap:wrap;
-  margin-top:30px;
 }
 
 .card{
   flex:1;
-  min-width:250px;
-  padding:20px;
-  background:#fafafa;
-  border-radius:15px;
+  min-width:280px;
+  padding:25px;
+  border-radius:20px;
+  background:#111;
+  border:1px solid #222;
 }
 
+/* CONTACT */
+.contact a{
+  display:block;
+  margin:10px 0;
+  color:white;
+  text-decoration:none;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
   padding:40px;
-  color:#666;
+  color:#777;
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="logo">
     <img src="favicon.png1">
@@ -175,90 +168,65 @@ footer{
   </div>
 </nav>
 
-<section class="hero" style="display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:auto;padding:120px 20px;gap:40px;flex-wrap:wrap;">
+<!-- HERO -->
+<section class="hero">
 
-  <!-- LEFT -->
-  <div style="flex:1;min-width:300px;">
-    <h1 style="font-size:56px;font-weight:600;">
-      Never miss a customer again
-    </h1>
-
-    <p style="margin-top:20px;color:#666;font-size:18px;">
-      AI chatbots and receptionists built for modern businesses
-    </p>
-
-    <a href="#contact" style="margin-top:30px;display:inline-block;padding:14px 30px;background:black;color:white;border-radius:30px;text-decoration:none;">
-      Get Started
-    </a>
+  <div class="left">
+    <h1>Never miss a customer again</h1>
+    <p>AI chatbots and receptionists built for modern businesses</p>
+    <a class="btn" href="#contact">Get Started</a>
   </div>
 
-  <!-- RIGHT (CHAT PREVIEW) -->
-  <div style="flex:1;min-width:300px;">
-    
-    <div style="background:white;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,0.1);padding:20px;">
-      
-      <div style="font-weight:600;margin-bottom:10px;">AI Assistant</div>
-
-      <div style="background:#f1f1f1;padding:10px;border-radius:10px;margin-bottom:10px;width:70%;">
-        Hi! How can I help you today?
-      </div>
-
-      <div style="background:black;color:white;padding:10px;border-radius:10px;margin-bottom:10px;margin-left:auto;width:70%;">
-        Do you take bookings?
-      </div>
-
-      <div style="background:#f1f1f1;padding:10px;border-radius:10px;width:70%;">
-        Yes, we can automatically book appointments for you.
-      </div>
-
-    </div>
-
+  <div class="chat">
+    <div class="msg bot">Hi! How can I help you?</div>
+    <div class="msg user">Do you take bookings?</div>
+    <div class="msg bot">Yes, we can handle bookings automatically.</div>
+    <div class="msg user">Can you work 24/7?</div>
+    <div class="msg bot">Yes, your AI assistant runs all day without missing leads.</div>
   </div>
 
 </section>
 
-<section class="section" id="contact">
+<!-- SERVICES -->
+<section id="services" class="section">
+  <h2>What we do</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>AI Chatbots</h3>
+      <p>Answer customer questions instantly and capture leads</p>
+    </div>
+
+    <div class="card">
+      <h3>AI Receptionist</h3>
+      <p>Handles messages, bookings, and customer inquiries 24/7</p>
+    </div>
+
+    <div class="card">
+      <h3>Full Automation</h3>
+      <p>Complete AI system replacing your front desk</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
   <h2>Contact</h2>
-  <p>WhatsApp: 71565356</p>
-  <p>Email: velox.agency1@gmail.com</p>
-  <p>Instagram: @get.velox.ai</p>
+
+  <div class="contact">
+    <a href="https://wa.me/96171565356">WhatsApp: 71565356</a>
+    <a href="mailto:velox.agency1@gmail.com">velox.agency1@gmail.com</a>
+    <a href="https://instagram.com/get.velox.ai">@get.velox.ai</a>
+  </div>
+
+  <p>Available every day</p>
 </section>
 
 <footer>
 Velox AI — AI Chatbots & Receptionists
 </footer>
-
-<!-- CHATBOT DEMO -->
-<div class="chatbox">
-  <div class="chat-header">Velox AI Assistant</div>
-
-  <div class="chat-messages" id="chat">
-    <div class="bot">Hi! How can I help you?</div>
-  </div>
-
-  <div class="chat-input">
-    <input id="input" placeholder="Type a message...">
-    <button onclick="send()">Send</button>
-  </div>
-</div>
-
-<script>
-function send(){
-  let input = document.getElementById("input");
-  let chat = document.getElementById("chat");
-
-  if(input.value === "") return;
-
-  chat.innerHTML += '<div class="user">'+input.value+'</div>';
-
-  setTimeout(()=>{
-    chat.innerHTML += '<div class="bot">Thanks! We will handle this automatically for your business.</div>';
-    chat.scrollTop = chat.scrollHeight;
-  },1000);
-
-  input.value="";
-}
-</script>
 
 </body>
 </html>
