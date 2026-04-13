@@ -1022,67 +1022,7 @@ footer p { font-size: 13px; color: var(--text-muted); }
   <p style="font-size:12px;color:#999;">velox.agency1@gmail.com</p>
 </footer>
 
-<!-- CHAT WIDGET -->
-<div class="widget">
-  <div class="wwindow" id="ww">
-    <div class="wtop">
-      <img src="favicon.png" alt="">
-      <div>
-        <div class="wtop-name">Velox AI</div>
-        <div class="wtop-st">Online now</div>
-      </div>
-    </div>
-    <div class="wmsgs" id="wmsgs">
-      <div class="wmsg bot">Hi! How can I help you today?</div>
-    </div>
-    <div class="winput">
-      <input id="winput" placeholder="Ask us anything..." onkeydown="if(event.key==='Enter')sendW()">
-      <button onclick="sendW()">&#9654;</button>
-    </div>
-  </div>
-  <button class="wtoggle" onclick="toggleW()">&#128172;</button>
-</div>
 
-<script>
-function switchPlan(tab, btn) {
-  document.querySelectorAll('.tab-c').forEach(t => t.classList.remove('on'));
-  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('on'));
-  document.getElementById('tab-' + tab).classList.add('on');
-  btn.classList.add('on');
-}
-
-function openFaq(btn) {
-  btn.parentElement.classList.toggle('open');
-}
-
-function toggleW() {
-  document.getElementById('ww').classList.toggle('open');
-}
-
-const replies = [
-  "Great question. We can definitely help with that. Would you like a free demo?",
-  "We work with all types of businesses. Setup typically takes 3 to 5 days.",
-  "Our plans start from $49 per month. Setup fees are a one-time cost.",
-  "You can reach us on WhatsApp at 71565356 for immediate help.",
-  "Yes, everything is fully customized for your specific business.",
-  "We handle the full setup. You just answer a few questions about your business."
-];
-let ri = 0;
-
-function sendW() {
-  const inp = document.getElementById('winput');
-  const msgs = document.getElementById('wmsgs');
-  if (!inp.value.trim()) return;
-  msgs.innerHTML += '<div class="wmsg user">' + inp.value + '</div>';
-  inp.value = '';
-  msgs.scrollTop = msgs.scrollHeight;
-  setTimeout(() => {
-    msgs.innerHTML += '<div class="wmsg bot">' + replies[ri % replies.length] + '</div>';
-    ri++;
-    msgs.scrollTop = msgs.scrollHeight;
-  }, 900);
-}
-</script>
 
 <script src="https://velox-server-production.up.railway.app/widget.js"></script>
 </body>
