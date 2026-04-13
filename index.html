@@ -1024,7 +1024,22 @@ footer p { font-size: 13px; color: var(--text-muted); }
 
 
 
+<script>
+function switchPlan(tab, btn) {
+  document.querySelectorAll('.tab-c').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('on'));
+  document.getElementById('tab-' + tab).classList.add('on');
+  btn.classList.add('on');
+}
+
+function openFaq(btn) {
+  btn.parentElement.classList.toggle('open');
+}
+</script>
+
 <script src="https://velox-server-production.up.railway.app/widget.js"></script>
+</body>
+</html>
 </body>
 </html>
 
