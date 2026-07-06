@@ -57,6 +57,13 @@ em{font-style:italic}
   100%{transform:translate3d(1.5%,1.5%,0) scale(1.06)}
 }
 
+/* ════════════════════════ WEBGL SCENE ════════════════════════ */
+.gl{position:fixed;inset:0;z-index:1;pointer-events:none}
+.gl canvas{display:block;width:100% !important;height:100% !important}
+section,footer{position:relative;z-index:2}
+.orb-stage,.particles{transition:opacity .6s var(--ease)}
+body.webgl-on .orb-stage,body.webgl-on .particles{opacity:0 !important;visibility:hidden}
+
 /* ════════════════════════ PRELOADER ════════════════════════ */
 .loader{
   position:fixed;inset:0;z-index:1000;background:var(--paper);
@@ -368,7 +375,7 @@ body.ready .scroll-cue{opacity:1}
 .pfine{margin-top:34px;font-size:13px;color:var(--muted)}
 
 /* ════════════════════════ PROCESS ════════════════════════ */
-.process{background:linear-gradient(180deg,#fff, var(--cream) 30%, var(--cream) 70%, #fff)}
+.process{background:linear-gradient(180deg,rgba(255,255,255,0), rgba(243,238,228,.35) 30%, rgba(243,238,228,.35) 70%, rgba(255,255,255,0))}
 .steps{position:relative;margin-top:90px}
 .steps svg.spine{position:absolute;top:0;left:50%;transform:translateX(-50%);height:100%;width:120px;overflow:visible}
 .steps svg.spine path{fill:none;stroke:var(--gold);stroke-width:1.5}
@@ -531,6 +538,9 @@ footer{position:relative;padding:90px 56px 46px;overflow:hidden}
 <body>
 
 <div class="atmosphere" aria-hidden="true"></div>
+
+<!-- 3D SCENE -->
+<div class="gl" aria-hidden="true"><canvas id="glCanvas"></canvas></div>
 
 <!-- PRELOADER -->
 <div class="loader" id="loader" aria-hidden="true">
@@ -1370,6 +1380,252 @@ document.getElementById('waForm').addEventListener('submit', function(e){
 });
 
 onScroll();
+})();
+</script>
+
+<!-- ════════════════════ THREE.JS — living glass sculpture ════════════════════ -->
+<script src="three.min.js"></script>
+<script>
+(function(){
+'use strict';
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(typeof THREE === 'undefined') return;               // CDN blocked → keep CSS orb
+
+var canvas = document.getElementById('glCanvas');
+var gl;
+try{
+  gl = new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+}catch(e){ return; }                                    // no WebGL → keep CSS orb
+if(!gl || !gl.getContext()) return;
+
+document.body.classList.add('webgl-on');                // hide the CSS fallback orb
+
+var isMobile = innerWidth < 760;
+var DPR = Math.min(window.devicePixelRatio||1, isMobile ? 1.4 : 1.8);
+gl.setPixelRatio(DPR);
+gl.setSize(innerWidth, innerHeight);
+gl.shadowMap.enabled = true;
+gl.shadowMap.type = THREE.PCFSoftShadowMap;
+gl.toneMapping = THREE.ACESFilmicToneMapping;
+gl.toneMappingExposure = 1.08;
+if('outputColorSpace' in gl) gl.outputColorSpace = THREE.SRGBColorSpace;
+
+var scene  = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(42, innerWidth/innerHeight, 0.1, 100);
+camera.position.set(0, 0, 7.2);
+
+/* ── procedural studio environment (gives the glass something to catch) ── */
+function buildEnv(){
+  var c = document.createElement('canvas'); c.width = 512; c.height = 256;
+  var x = c.getContext('2d');
+  var g = x.createLinearGradient(0,0,0,256);
+  g.addColorStop(0,'#ffffff'); g.addColorStop(.5,'#f3ede1'); g.addColorStop(1,'#ffffff');
+  x.fillStyle = g; x.fillRect(0,0,512,256);
+  function blob(cx,cy,r,col){ var rg=x.createRadialGradient(cx,cy,0,cx,cy,r); rg.addColorStop(0,col); rg.addColorStop(1,'rgba(255,255,255,0)'); x.fillStyle=rg; x.fillRect(0,0,512,256); }
+  blob(150,70,150,'rgba(201,146,42,.85)');   // warm gold light
+  blob(390,205,150,'rgba(190,205,225,.8)');  // cool light
+  blob(430,40,90,'rgba(255,255,255,.9)');    // white highlight
+  var tex = new THREE.CanvasTexture(c);
+  tex.mapping = THREE.EquirectangularReflectionMapping;
+  if('colorSpace' in tex) tex.colorSpace = THREE.SRGBColorSpace;
+  var pmrem = new THREE.PMREMGenerator(gl);
+  var env = pmrem.fromEquirectangular(tex).texture;
+  pmrem.dispose(); tex.dispose();
+  return env;
+}
+var envMap = buildEnv();
+scene.environment = envMap;
+
+/* ── the sculpture: glossy iridescent glass torus knot ── */
+var geo = new THREE.TorusKnotGeometry(1.05, 0.35, 260, 40, 2, 3);
+var matOpts = {
+  color:0xD9A94E, metalness:1.0, roughness:0.14,
+  envMap:envMap, envMapIntensity:1.55,
+  clearcoat:1, clearcoatRoughness:0.12
+};
+var mat = new THREE.MeshPhysicalMaterial(matOpts);
+if('iridescence' in mat){ mat.iridescence = 0.6; mat.iridescenceIOR = 1.35; mat.iridescenceThicknessRange = [140, 480]; }
+var knot = new THREE.Mesh(geo, mat);
+knot.castShadow = true;
+var rig = new THREE.Group(); rig.add(knot); scene.add(rig);
+
+/* white-gold inner core adds depth to the reflections */
+var core = new THREE.Mesh(
+  new THREE.IcosahedronGeometry(0.42, 2),
+  new THREE.MeshStandardMaterial({color:0xFFF3DC, metalness:.9, roughness:.25, envMap:envMap, envMapIntensity:1})
+);
+knot.add(core);
+
+/* ── lights: warm gold + cool white + soft ambient (they breathe) ── */
+scene.add(new THREE.HemisphereLight(0xffffff, 0xece4d6, 0.55));
+scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+var gold = new THREE.DirectionalLight(0xF0C878, 2.5);   // casts the shadow
+gold.position.set(-4, 5, 3); gold.castShadow = true;
+gold.shadow.mapSize.set(1024,1024); gold.shadow.radius = 8;
+gold.shadow.camera.near = 1; gold.shadow.camera.far = 20;
+gold.shadow.camera.left=-6; gold.shadow.camera.right=6; gold.shadow.camera.top=6; gold.shadow.camera.bottom=-6;
+gold.shadow.bias = -0.0006;
+scene.add(gold);
+var cool = new THREE.PointLight(0xBFD2EA, 26, 30); cool.position.set(4,-3,4); scene.add(cool);
+var rim  = new THREE.PointLight(0xffffff, 18, 30); rim.position.set(2,4,-4); scene.add(rim);
+
+/* ── soft contact shadow on a near-invisible ground ── */
+var ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(26,26),
+  new THREE.ShadowMaterial({opacity:0.16})
+);
+ground.rotation.x = -Math.PI/2; ground.position.y = -2.4; ground.receiveShadow = true;
+scene.add(ground);
+
+/* ── drifting particle field ── */
+var pGeo = new THREE.BufferGeometry(), P = isMobile ? 110 : 220, pos = new Float32Array(P*3), spd = new Float32Array(P);
+for(var i=0;i<P;i++){
+  pos[i*3]   = (Math.random()-.5)*16;
+  pos[i*3+1] = (Math.random()-.5)*11;
+  pos[i*3+2] = (Math.random()-.5)*7 - 1;
+  spd[i] = 0.06 + Math.random()*0.14;
+}
+pGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+var pMat = new THREE.PointsMaterial({color:0xC9922A, size:0.032, transparent:true, opacity:0.5, depthWrite:false});
+var pts = new THREE.Points(pGeo, pMat); scene.add(pts);
+
+/* ── "room to room": each section defines where the sculpture lives ── */
+var anchors = [];   // {pos, x, y, scale, rx, ry, coolC, goldI}
+function collectAnchors(){
+  var defs = [
+    ['#top',      { x: 2.3, y: 0.1, s: 1.0, rx:-.15, ry: .2,  op: 1.0 }],
+    ['#services', { x:-1.75,y:-0.3, s: 0.66, rx: .25, ry:-.5, op: 0.9 }],
+    ['.nums',     { x: 1.95,y:-0.7, s: 0.6, rx:-.3, ry: .7,  op: 0.85 }],
+    ['#pricing',  { x: 2.15,y: 1.35,s: 0.55, rx: .1, ry:-.9,  op: 0.8 }],
+    ['#process',  { x:-1.9, y:-0.1, s: 0.6, rx:-.2, ry: 1.2, op: 0.82 }],
+    ['#contact',  { x: 1.9, y: 1.4, s: 0.5, rx: .15, ry:-1.4, op: 0.12 }]
+  ];
+  anchors = [];
+  defs.forEach(function(d){
+    var el = document.querySelector(d[0]); if(!el) return;
+    var r = el.getBoundingClientRect(); var top = r.top + window.scrollY;
+    anchors.push(Object.assign({pos: top + el.offsetHeight/2 - innerHeight/2}, d[1]));
+  });
+  anchors.sort(function(a,b){return a.pos-b.pos;});
+}
+collectAnchors();
+
+/* ── mouse parallax ── */
+var mX=0, mY=0, tmX=0, tmY=0;
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced){
+  window.addEventListener('mousemove', function(e){
+    tmX = (e.clientX/innerWidth - .5);
+    tmY = (e.clientY/innerHeight - .5);
+  }, {passive:true});
+}
+
+function lerp(a,b,t){return a+(b-a)*t;}
+
+/* current smoothed sculpture state */
+var cur = {x: anchors.length?anchors[0].x:2.3, y:0.1, s:1, rx:0, ry:0, op:1};
+
+function sampleTarget(){
+  var y = window.scrollY;
+  if(!anchors.length) return cur;
+  if(y <= anchors[0].pos) return anchors[0];
+  if(y >= anchors[anchors.length-1].pos) return anchors[anchors.length-1];
+  for(var i=0;i<anchors.length-1;i++){
+    var a=anchors[i], b=anchors[i+1];
+    if(y>=a.pos && y<=b.pos){
+      var t=(y-a.pos)/(b.pos-a.pos), e=t*t*(3-2*t);   // smoothstep
+      return {
+        x:lerp(a.x,b.x,e), y:lerp(a.y,b.y,e), s:lerp(a.s,b.s,e),
+        rx:lerp(a.rx,b.rx,e), ry:lerp(a.ry,b.ry,e),
+        op:lerp(a.op,b.op,e)
+      };
+    }
+  }
+  return cur;
+}
+
+/* hero-specific zoom toward camera + dissolve within first viewport */
+function heroFactor(){ return Math.min(1, Math.max(0, window.scrollY/(innerHeight*0.95))); }
+
+var t0 = performance.now(), running = true, visible = true;
+document.addEventListener('visibilitychange', function(){ visible = !document.hidden; });
+
+function resize(){
+  isMobile = innerWidth < 760;
+  camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+  gl.setSize(innerWidth, innerHeight);
+  collectAnchors();
+}
+window.addEventListener('resize', resize, {passive:true});
+
+function frame(now){
+  requestAnimationFrame(frame);
+  if(!visible) return;
+  var dt = Math.min(0.05, (now - t0)/1000); t0 = now;
+  var time = now/1000;
+
+  // smoothed mouse
+  mX = lerp(mX, tmX, 0.05); mY = lerp(mY, tmY, 0.05);
+
+  // target room (position / scale / rotation / presence all anchor-driven)
+  var tg = sampleTarget();
+  var k = reduced ? 1 : 0.06;
+  cur.x  = lerp(cur.x,  tg.x,  k);
+  cur.y  = lerp(cur.y,  tg.y,  k);
+  cur.s  = lerp(cur.s,  tg.s,  k);
+  cur.rx = lerp(cur.rx, tg.rx, k);
+  cur.ry = lerp(cur.ry, tg.ry, k);
+  cur.op = lerp(cur.op, (tg.op==null?1:tg.op), 0.08);
+
+  // hero envelope: a gentle dolly + swell that lives ONLY in the first viewport,
+  // then hands off to the room anchors (so the sculpture never vanishes for good)
+  var heroEnv = Math.max(0, 1 - window.scrollY/(innerHeight*0.9));
+
+  // on phones: smaller, nudged toward the edge so it accents rather than covers text
+  var mSc = isMobile ? 0.58 : 1;
+  var mPx = isMobile ? 1.35 : 1;
+  rig.position.x = cur.x*mPx + mX*0.9;
+  rig.position.y = cur.y - mY*0.7;
+  rig.position.z = heroEnv*1.3;                     // eases toward the camera at the very top
+  rig.scale.setScalar(cur.s * mSc * (1 + heroEnv*0.5));
+
+  // continuous elegant rotation + mouse tilt + per-room offset
+  if(!reduced){
+    knot.rotation.y += dt*0.32;
+    knot.rotation.x += dt*0.11;
+    core.rotation.y -= dt*0.5;
+  }
+  rig.rotation.x = cur.rx + mY*0.4;
+  rig.rotation.y = cur.ry + mX*0.5;
+
+  // presence (opacity) — purely room-driven
+  var op = cur.op;
+  mat.transparent = op < 0.995; mat.opacity = op;
+  core.material.transparent = op < 0.995; core.material.opacity = op;
+  pMat.opacity = 0.45*Math.max(op, 0.35);
+  ground.material.opacity = 0.16*Math.min(1, op + 0.15);
+
+  // breathing lights
+  if(!reduced){
+    gold.position.x = -4 + Math.sin(time*0.4)*1.6;
+    gold.position.y = 5 + Math.cos(time*0.33)*0.8;
+    gold.intensity  = 2.2 + Math.sin(time*0.6)*0.5;
+    cool.position.x = 4 + Math.cos(time*0.5)*1.4;
+    cool.position.y = -3 + Math.sin(time*0.45)*1.2;
+    rim.intensity   = 16 + Math.sin(time*0.8)*4;
+  }
+
+  // drifting particles
+  var pa = pGeo.attributes.position.array;
+  for(var i=0;i<P;i++){
+    pa[i*3+1] += spd[i]*dt* (reduced?0:1);
+    if(pa[i*3+1] > 5.6){ pa[i*3+1] = -5.6; pa[i*3] = (Math.random()-.5)*16; }
+  }
+  pGeo.attributes.position.needsUpdate = true;
+  pts.rotation.y = time*0.02;
+
+  gl.render(scene, camera);
+}
+requestAnimationFrame(frame);
 })();
 </script>
 </body>
