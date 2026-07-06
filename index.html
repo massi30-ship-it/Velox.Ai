@@ -3,598 +3,487 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velox AI — Digital Atelier · Websites & AI Systems · Beirut</title>
-<meta name="description" content="Velox AI is a Beirut digital atelier crafting custom websites and AI systems for ambitious businesses. Designed by hand. Live in 3 days. From $199.">
+<title>Velox AI — Digital Studio · Websites & AI Systems · Beirut</title>
+<meta name="description" content="Velox AI is a Beirut digital studio building custom websites and AI systems for ambitious brands. Designed by hand. Live in 3 days. From $199.">
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════ TOKENS ══════════════════════════ */
 :root{
-  --ink:#0E0C09;
-  --ink-2:#171310;
-  --paper:#FFFFFF;
-  --cream:#FAF7F1;
-  --cream-2:#F2ECE0;
-  --gold:#C9922A;
-  --gold-deep:#916413;   /* small text on light — AA safe */
-  --gold-soft:#E8C879;
-
-  /* room-driven (animated) */
-  --room-bg-1:#FFFFFF;
-  --room-text:#0E0C09;
-  --room-text-soft:#6A6252;
-  --room-line:rgba(14,12,9,.10);
-  --room-eyebrow:#916413;
-  --card-bg:#FFFFFF;
-  --card-line:rgba(14,12,9,.09);
-
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --fraunces:'Fraunces',Georgia,serif;
-  --sans:'Inter',system-ui,sans-serif;
-  --ease:cubic-bezier(.22,1,.36,1);
-  --bounce:cubic-bezier(.34,1.4,.5,1);
-  --room-t:1.2s cubic-bezier(.4,0,.2,1);
+  --bg:#07060A;
+  --bg2:#0C0A11;
+  --panel:rgba(255,255,255,.035);
+  --panel-2:rgba(255,255,255,.05);
+  --stroke:rgba(255,255,255,.07);
+  --stroke-2:rgba(255,255,255,.12);
+  --text:#F3EFE7;
+  --dim:rgba(243,239,231,.55);
+  --dim-2:rgba(243,239,231,.34);
+  --gold:#E0B052;
+  --gold-2:#F3D89A;
+  --gold-deep:#B4832F;
+  --glowA:rgba(224,176,82,.16);
+  --glowB:rgba(120,120,255,.08);
+  --disp:'Syne',sans-serif;
+  --sans:'Space Grotesk',system-ui,sans-serif;
+  --mono:'Space Mono',monospace;
+  --e:cubic-bezier(.19,1,.22,1);
+  --e2:cubic-bezier(.83,0,.17,1);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:auto}
-body{
-  font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.75;
-  color:var(--room-text);background:#000;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  transition:color var(--room-t);
-}
-::selection{background:rgba(201,146,42,.25)}
-a,button{cursor:pointer;touch-action:manipulation}
-:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
-img{max-width:100%}
+body{font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7;color:var(--text);
+  background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(224,176,82,.28);color:#fff}
+a,button{cursor:pointer;touch-action:manipulation;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+img{max-width:100%;display:block}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
 
-/* Lenis */
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-.lenis.lenis-stopped{overflow:hidden}
-
-/* ══════════════════════════ ROOM BACKGROUND (living) ══════════════════════════ */
-.room-bg{position:fixed;inset:0;z-index:-3;background:var(--room-bg-1);transition:background var(--room-t)}
-.room-grad{
-  position:fixed;inset:-25%;z-index:-2;pointer-events:none;opacity:.9;
-  background:
-    radial-gradient(38% 32% at 22% 20%, var(--glow-a,rgba(201,146,42,.10)), transparent 70%),
-    radial-gradient(44% 38% at 80% 72%, var(--glow-b,rgba(14,12,9,.05)), transparent 72%),
-    radial-gradient(40% 30% at 60% 8%, rgba(255,255,255,.4), transparent 70%);
-  animation:drift 30s ease-in-out infinite alternate;
-}
-@keyframes drift{0%{transform:translate3d(-1.5%,-1%,0) scale(1)}100%{transform:translate3d(1.5%,1.5%,0) scale(1.06)}}
-.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px}
-.stage{position:fixed;inset:0;z-index:0;pointer-events:none}
+/* ambience */
+.bg{position:fixed;inset:0;z-index:-4;background:
+  radial-gradient(60% 50% at 78% 12%, var(--glowA), transparent 70%),
+  radial-gradient(50% 50% at 12% 88%, var(--glowB), transparent 72%),
+  linear-gradient(180deg,#07060A, #0A0810 55%, #07060A)}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px}
+.stage{position:fixed;inset:0;z-index:-2;pointer-events:none}
 .stage canvas{display:block}
-.fallback-orb{position:fixed;top:38%;right:12%;width:min(38vw,460px);height:min(38vw,460px);z-index:0;pointer-events:none;transform:translateY(-50%);opacity:0;transition:opacity .6s}
-body.no-webgl .fallback-orb{opacity:1}
-.fallback-orb i{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(201,146,42,.3);animation:spin 40s linear infinite}
-.fallback-orb i:nth-child(2){transform:rotateX(60deg);animation-duration:34s}
-.fallback-orb i:nth-child(3){transform:rotateY(60deg);animation-duration:46s}
-@keyframes spin{to{transform:rotate(360deg)}}
+.fallback{position:fixed;top:42%;right:12%;width:min(40vw,480px);height:min(40vw,480px);z-index:-2;transform:translateY(-50%);opacity:0;transition:opacity .6s}
+body.no-webgl .fallback{opacity:.8}
+.fallback i{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(224,176,82,.35);animation:sp 30s linear infinite}
+.fallback i:nth-child(2){inset:12%;animation-duration:24s;animation-direction:reverse;border-color:rgba(224,176,82,.2)}
+.fallback i:nth-child(3){inset:26%;animation-duration:38s}
+@keyframes sp{to{transform:rotate(360deg)}}
 
-main,nav,footer{position:relative;z-index:2}
+/* animated code flow — no background */
+.codeflow{position:fixed;inset:0;z-index:-3;pointer-events:none;overflow:hidden;opacity:.5}
+.codeflow pre{position:absolute;font-family:var(--mono);font-size:12px;line-height:1.9;color:rgba(224,176,82,.16);
+  white-space:pre;text-shadow:0 0 12px rgba(224,176,82,.12);will-change:transform}
+.codeflow pre.c2{color:rgba(150,160,255,.12)}
 
-/* ══════════════════════════ PRELOADER ══════════════════════════ */
-.loader{position:fixed;inset:0;z-index:1000;background:var(--ink);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:30px;transition:opacity 1s var(--ease),visibility 1s}
-.loader.done{opacity:0;visibility:hidden}
-.loader-mark{font-family:var(--serif);font-weight:300;font-size:clamp(38px,7vw,72px);letter-spacing:.16em;
-  color:var(--cream);overflow:hidden}
-.loader-mark span{display:inline-block;transform:translateY(110%);animation:lm .9s var(--ease) forwards}
-.loader-mark span:nth-child(2){animation-delay:.08s;color:var(--gold)}
-.loader-mark span:nth-child(3){animation-delay:.16s}
+/* preloader */
+.load{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:26px;transition:opacity 1s var(--e),visibility 1s}
+.load.done{opacity:0;visibility:hidden}
+.load-m{font-family:var(--disp);font-weight:800;font-size:clamp(40px,8vw,84px);letter-spacing:-.02em;color:var(--text);overflow:hidden}
+.load-m span{display:inline-block;transform:translateY(110%);animation:lm .9s var(--e) forwards}
+.load-m span:nth-child(2){color:var(--gold);animation-delay:.06s}
 @keyframes lm{to{transform:translateY(0)}}
-.loader-bar{width:min(240px,60vw);height:1px;background:rgba(255,255,255,.14);overflow:hidden}
-.loader-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--gold),var(--gold-soft));
-  transform:scaleX(0);transform-origin:left}
-.loader-pct{font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.4)}
+.load-p{font-family:var(--mono);font-size:12px;color:var(--dim-2);letter-spacing:.2em}
 
-/* ══════════════════════════ CURSOR ══════════════════════════ */
-.cur-dot,.cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:900;border-radius:50%;display:none}
-@media(hover:hover) and (pointer:fine){
-  .cur-dot,.cur-ring{display:block}
-  .cur-dot{width:5px;height:5px;background:var(--gold);transform:translate(-50%,-50%);mix-blend-mode:difference}
-  .cur-ring{width:34px;height:34px;border:1px solid var(--room-text);opacity:.4;transform:translate(-50%,-50%);
-    transition:width .5s var(--ease),height .5s var(--ease),opacity .4s,border-color var(--room-t)}
-  .cur-ring.hot{width:62px;height:62px;opacity:.8;border-color:var(--gold)}
-}
+/* cursor */
+.cd,.cr{position:fixed;top:0;left:0;pointer-events:none;z-index:900;border-radius:50%;display:none}
+@media(hover:hover) and (pointer:fine){.cd,.cr{display:block}
+  .cd{width:5px;height:5px;background:var(--gold);transform:translate(-50%,-50%)}
+  .cr{width:36px;height:36px;border:1px solid rgba(243,239,231,.35);transform:translate(-50%,-50%);transition:width .5s var(--e),height .5s var(--e),border-color .4s,background .4s}
+  .cr.hot{width:64px;height:64px;border-color:var(--gold);background:rgba(224,176,82,.08)}}
 
-/* ══════════════════════════ NAV ══════════════════════════ */
+/* nav */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:center;pointer-events:none}
-.nav-in{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1600px;
-  margin:0 26px;padding:28px 30px;border:1px solid transparent;border-radius:0;
-  transition:max-width .8s var(--ease),margin .8s var(--ease),padding .8s var(--ease),background .6s,border-color .6s,box-shadow .6s,border-radius .8s var(--ease)}
-.nav.small .nav-in{max-width:720px;margin-top:14px;padding:10px 12px 10px 24px;border-radius:100px;
-  background:rgba(255,255,255,.7);border-color:var(--room-line);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-  box-shadow:0 14px 44px rgba(14,12,9,.10)}
-body[data-room="dark"] .nav.small .nav-in{background:rgba(20,17,14,.6);border-color:rgba(255,255,255,.1)}
-.logo{display:flex;align-items:baseline;gap:7px;text-decoration:none}
-.logo .w{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:.02em;color:var(--room-text);line-height:1;transition:color var(--room-t)}
-.logo .w b{color:var(--gold);font-weight:500}
-.logo .t{font-size:9px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--room-text-soft);transition:color var(--room-t)}
-.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
-.nav-links a{font-size:12.5px;font-weight:400;letter-spacing:.04em;color:var(--room-text-soft);text-decoration:none;position:relative;transition:color .3s}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease)}
-.nav-links a:hover{color:var(--room-text)}.nav-links a:hover::after{width:100%}
-.nav-cta{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:12.5px;font-weight:400;
-  letter-spacing:.03em;padding:12px 26px;border-radius:100px;border:1px solid var(--ink);
-  transition:background .4s,border-color .4s}
-.nav-cta:hover{background:var(--gold-deep);border-color:var(--gold-deep)}
-body[data-room="dark"] .nav-cta{background:var(--cream);color:var(--ink);border-color:var(--cream)}
-body[data-room="dark"] .nav-cta:hover{background:var(--gold);border-color:var(--gold)}
+.nav-in{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1560px;
+  margin:0 26px;padding:26px 30px;border:1px solid transparent;border-radius:100px;
+  transition:max-width .8s var(--e),margin .8s var(--e),padding .8s var(--e),background .6s,border-color .6s,box-shadow .6s}
+.nav.small .nav-in{max-width:660px;margin-top:14px;padding:10px 12px 10px 24px;background:rgba(12,10,17,.6);
+  border-color:var(--stroke);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);box-shadow:0 16px 50px rgba(0,0,0,.5)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+.logo .w{font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--text)}
+.logo .w b{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--dim);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-family:var(--sans);font-weight:400;font-size:13px;letter-spacing:.02em;text-decoration:none;padding:12px 24px;
+  border-radius:100px;background:var(--gold);color:#0B0A0E;border:1px solid var(--gold);transition:background .4s,box-shadow .4s}
+.nav-cta:hover{background:var(--gold-2);box-shadow:0 0 30px rgba(224,176,82,.4)}
 
-/* ══════════════════════════ TYPE ══════════════════════════ */
-.eyebrow{display:flex;align-items:center;gap:14px;font-size:11px;font-weight:400;letter-spacing:.36em;
-  text-transform:uppercase;color:var(--room-eyebrow);transition:color var(--room-t)}
-.eyebrow::before{content:'';width:34px;height:1px;background:currentColor;opacity:.7}
-.h2{font-family:var(--serif);font-weight:300;font-size:clamp(44px,5.6vw,84px);line-height:1.04;letter-spacing:.01em;color:var(--room-text);transition:color var(--room-t)}
-.h2 em{font-family:var(--fraunces);font-style:italic;font-weight:300;color:var(--gold)}
-.lead{font-size:16.5px;color:var(--room-text-soft);max-width:520px;margin-top:22px;transition:color var(--room-t)}
+/* layout */
+.sec{position:relative;padding:clamp(100px,15vh,190px) clamp(22px,5vw,72px)}
+.wrap{max-width:1400px;margin:0 auto;position:relative;z-index:2}
+.tag{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:inline-block}
+.tag::before{content:'// '}
+.h-xl{font-family:var(--disp);font-weight:800;font-size:clamp(48px,7.5vw,128px);line-height:.96;letter-spacing:-.03em}
+.h-lg{font-family:var(--disp);font-weight:700;font-size:clamp(40px,5.6vw,88px);line-height:1;letter-spacing:-.025em}
+.h-md{font-family:var(--disp);font-weight:700;font-size:clamp(26px,3vw,40px);line-height:1.05;letter-spacing:-.02em}
+.grad{background:linear-gradient(120deg,var(--gold-2),var(--gold) 55%,var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:17px;color:var(--dim);max-width:52ch;line-height:1.8}
 
-.rv{opacity:0;transform:translateY(46px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
-.rv-l{opacity:0;transform:translateX(-70px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
-.rv-r{opacity:0;transform:translateX(70px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
-.rv-z{opacity:0;transform:scale(.94) translateY(30px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
-.rv.in,.rv-l.in,.rv-r.in,.rv-z.in{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
-.split-w{display:inline-block;overflow:hidden;vertical-align:top}
-.split-c{display:inline-block;transform:translateY(105%);transition:transform .9s var(--ease)}
-.split.in .split-c{transform:translateY(0)}
+/* scroll reveal */
+.r{opacity:0;transform:translateY(40px);transition:opacity 1s var(--e),transform 1.1s var(--e)}
+.r.in{opacity:1;transform:none}
+.rw{overflow:hidden;display:inline-block;vertical-align:top}
+.rw i{display:inline-block;transform:translateY(110%);transition:transform .95s var(--e)}
+.rl.in .rw i{transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
 
-.sec{padding:clamp(90px,13vh,170px) clamp(22px,5vw,64px);position:relative}
-.wrap{max-width:1340px;margin:0 auto}
+/* buttons */
+.btn{position:relative;display:inline-flex;text-decoration:none;border-radius:100px;font-size:14px;font-weight:400;letter-spacing:.01em}
+.btn .in{display:flex;align-items:center;gap:10px;padding:17px 34px;border-radius:100px;transition:background .45s,color .45s,border-color .45s,box-shadow .45s}
+.btn-g .in{background:var(--gold);color:#0B0A0E;border:1px solid var(--gold)}
+.btn-g:hover .in{background:var(--gold-2);box-shadow:0 0 40px rgba(224,176,82,.45)}
+.btn-o .in{background:transparent;color:var(--text);border:1px solid var(--stroke-2)}
+.btn-o:hover .in{border-color:var(--text);background:rgba(255,255,255,.04)}
+.btn svg{width:15px;height:15px;transition:transform .45s var(--e)}
+.btn:hover svg{transform:translate(4px,-4px)}
 
-/* ══════════════════════════ HERO ══════════════════════════ */
-.hero{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;
-  padding:130px clamp(22px,5vw,64px) 70px;max-width:1600px;margin:0 auto;position:relative}
-.hero-l{position:relative;z-index:3;max-width:680px}
-.hero-eyebrow{margin-bottom:34px}
-.hero-h{font-family:var(--serif);font-weight:300;font-size:clamp(56px,7vw,116px);line-height:.98;letter-spacing:.012em;color:var(--room-text)}
-.hero-h .drop{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
-.hero-h .drop i{display:inline-block;transform:translateY(115%);font-style:normal}
-body.ready .hero-h .drop i{animation:drop 1.05s var(--bounce) forwards;animation-delay:var(--d,0s)}
-@keyframes drop{to{transform:translateY(0)}}
-.hero-h em{font-family:var(--fraunces);font-style:italic;font-weight:300;color:var(--gold)}
-.hero-h .ul{position:relative;white-space:nowrap}
-.hero-h .ul::after{content:'';position:absolute;left:0;bottom:.04em;height:.045em;width:100%;border-radius:4px;
-  background:linear-gradient(90deg,var(--gold),var(--gold-soft),var(--gold));background-size:220% 100%;
-  transform:scaleX(0);transform-origin:left}
-body.ready .hero-h .ul::after{animation:ulg 1.3s 1.5s var(--ease) forwards,shim 4s 2.9s linear infinite}
-@keyframes ulg{to{transform:scaleX(1)}}
-@keyframes shim{to{background-position:-220% 0}}
-.hero-desc{font-size:16.5px;color:var(--room-text-soft);max-width:440px;margin:38px 0 0}
-.hero-desc strong{color:var(--room-text);font-weight:400}
-.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:40px}
-.hero-from{display:flex;flex-direction:column;gap:2px;margin-left:6px}
-.hero-from .l{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--room-text-soft)}
-.hero-from .v{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--gold-deep);line-height:1}
+/* HERO */
+.hero{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;
+  max-width:1560px;margin:0 auto;padding:140px clamp(22px,5vw,72px) 80px;position:relative}
+.hero-l{position:relative;z-index:3;max-width:760px}
+.hero-tag{margin-bottom:30px}
+.hero-h{font-family:var(--disp);font-weight:800;font-size:clamp(52px,7.4vw,124px);line-height:.92;letter-spacing:-.035em}
+.hero-h .grad{display:inline-block}
+.hero-sub{display:flex;align-items:center;gap:14px;margin-top:34px;font-family:var(--mono);font-size:13px;color:var(--dim);letter-spacing:.02em}
+.hero-sub .pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);animation:pulse 2.4s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero-desc{font-size:17px;color:var(--dim);max-width:46ch;margin-top:26px;line-height:1.8}
+.hero-desc b{color:var(--text);font-weight:400}
+.hero-act{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:40px}
+.hero-from{font-family:var(--mono);font-size:12px;color:var(--dim);margin-left:6px}
+.hero-from b{font-family:var(--disp);font-weight:700;font-size:22px;color:var(--gold);letter-spacing:-.02em}
 .hero-r{position:relative;z-index:1}
-.hero-scroll{position:absolute;bottom:34px;left:clamp(22px,5vw,64px);display:flex;align-items:center;gap:14px;z-index:3;
-  opacity:0;transition:opacity 1s 2.6s}
-body.ready .hero-scroll{opacity:1}
-.hero-scroll .ln{width:54px;height:1px;background:var(--room-line);overflow:hidden}
-.hero-scroll .ln i{display:block;height:100%;background:var(--gold);animation:cue 2.2s var(--ease) infinite}
-@keyframes cue{0%{transform:translateX(-101%)}55%{transform:translateX(0)}100%{transform:translateX(101%)}}
-.hero-scroll span{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--room-text-soft)}
+.scroll-cue{position:absolute;bottom:38px;left:clamp(22px,5vw,72px);z-index:3;font-family:var(--mono);font-size:11px;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--dim-2);display:flex;align-items:center;gap:12px;opacity:0;transition:opacity 1s 2.4s}
+body.ready .scroll-cue{opacity:1}
+.scroll-cue::after{content:'';width:30px;height:30px;border-radius:50%;border:1px solid var(--stroke-2);position:relative}
+.scroll-cue .arw{position:absolute;left:calc(clamp(22px,5vw,72px) + 92px);bottom:44px;color:var(--gold);animation:bob 1.8s ease infinite}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:1}}
 
-.btn{position:relative;display:inline-block;text-decoration:none;border-radius:100px;font-size:14px;font-weight:400;letter-spacing:.02em}
-.btn .in{display:flex;align-items:center;gap:10px;padding:17px 34px;border-radius:100px;white-space:nowrap;
-  transition:background .45s,color .45s,border-color .45s,box-shadow .45s}
-.btn-ink .in{background:var(--ink);color:#fff;border:1px solid var(--ink)}
-.btn-ink:hover .in{background:var(--gold-deep);border-color:var(--gold-deep);box-shadow:0 18px 46px rgba(145,100,19,.3)}
-.btn-ghost .in{background:transparent;color:var(--room-text);border:1px solid var(--room-line)}
-.btn-ghost:hover .in{border-color:var(--room-text)}
-.btn svg{width:14px;height:14px;transition:transform .45s var(--ease)}
-.btn:hover svg{transform:translateX(4px)}
-body[data-room="dark"] .btn-ink .in{background:var(--cream);color:var(--ink);border-color:var(--cream)}
-body[data-room="dark"] .btn-ink:hover .in{background:var(--gold);border-color:var(--gold)}
+/* glass card */
+.glass{background:var(--panel);border:1px solid var(--stroke);border-radius:24px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:transform .6s var(--e),border-color .5s,box-shadow .5s,background .5s}
+.glass:hover{border-color:var(--stroke-2);background:var(--panel-2);box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 60px rgba(224,176,82,.06)}
 
-/* ══════════════════════════ MARQUEE ══════════════════════════ */
-.marquee{overflow:hidden;padding:20px 0;border-top:1px solid var(--room-line);border-bottom:1px solid var(--room-line);
-  transition:border-color var(--room-t)}
-.mq{display:inline-flex;white-space:nowrap;animation:mq 30s linear infinite;will-change:transform}
-.mq span{display:inline-flex;align-items:center;gap:16px;padding:0 30px;font-family:var(--serif);font-weight:400;
-  font-size:26px;letter-spacing:.01em;color:var(--room-text);opacity:.75;transition:color var(--room-t)}
-.mq span b{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
-@keyframes mq{to{transform:translateX(-50%)}}
+/* SERVICES */
+.svc-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:70px}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.svc{padding:44px 40px;position:relative;overflow:hidden;transform-style:preserve-3d}
+.svc .idx{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.1em}
+.svc h3{font-family:var(--disp);font-weight:700;font-size:30px;letter-spacing:-.02em;margin:16px 0 12px;transform:translateZ(24px)}
+.svc p{font-size:14.5px;color:var(--dim);max-width:42ch;margin-bottom:24px}
+.svc ul{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:26px}
+.svc li{font-size:13.5px;color:var(--text);opacity:.82;padding-left:22px;position:relative}
+.svc li::before{content:'+';position:absolute;left:0;color:var(--gold);font-family:var(--mono)}
+.svc .pr{font-family:var(--mono);font-size:13px;color:var(--dim)}
+.svc .pr b{font-family:var(--disp);font-weight:700;font-size:22px;color:var(--gold);margin-right:8px;letter-spacing:-.02em}
 
-/* ══════════════════════════ SERVICES ══════════════════════════ */
-.hs{position:relative}
-.hs-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.hs-head{max-width:1340px;width:100%;margin:0 auto;padding:0 clamp(22px,5vw,64px) 30px}
-.hs-progress{width:220px;height:2px;background:var(--room-line);margin-top:24px;border-radius:2px;overflow:hidden}
-.hs-progress i{display:block;height:100%;background:var(--gold);transform:scaleX(0);transform-origin:left}
-.hs-track{display:flex;gap:28px;padding:12px clamp(22px,5vw,64px);will-change:transform}
-.svc{position:relative;flex:0 0 auto;width:min(500px,82vw);border-radius:28px;background:var(--card-bg);
-  border:1px solid var(--card-line);padding:52px 46px;transform-style:preserve-3d;
-  box-shadow:0 1px 2px rgba(14,12,9,.04),0 10px 30px rgba(14,12,9,.05);
-  transition:box-shadow .6s var(--ease),transform .5s var(--ease)}
-.svc:hover{box-shadow:0 30px 60px rgba(14,12,9,.14),0 70px 140px rgba(14,12,9,.16)}
-.svc .n{position:absolute;top:24px;right:36px;font-family:var(--serif);font-weight:300;font-size:100px;line-height:1;
-  color:rgba(14,12,9,.05);letter-spacing:-.02em;user-select:none}
-.svc .k{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:20px}
-.svc h3{font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.08;margin-bottom:16px;color:var(--ink);transform:translateZ(30px)}
-.svc p{font-size:14.5px;color:#6A6252;max-width:360px;margin-bottom:26px}
-.svc ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.svc li{font-size:13.5px;color:#2A261F;padding-left:22px;position:relative}
-.svc li::before{content:'';position:absolute;left:0;top:.62em;width:9px;height:1px;background:var(--gold)}
-.svc .p{margin-top:28px;padding-top:22px;border-top:1px solid var(--card-line);font-size:13px;color:#6A6252}
-.svc .p b{font-family:var(--serif);font-weight:500;font-size:24px;color:var(--gold-deep);margin-right:6px}
+/* WORK gallery */
+.work-track{display:flex;gap:24px;margin-top:56px;will-change:transform}
+.work{flex:0 0 auto;width:min(560px,84vw)}
+.mock{border-radius:18px;overflow:hidden;border:1px solid var(--stroke);background:#0F0D15;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.mock-bar{display:flex;align-items:center;gap:7px;padding:14px 18px;border-bottom:1px solid var(--stroke);background:rgba(255,255,255,.02)}
+.mock-bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.14)}
+.mock-bar span{margin-left:12px;font-family:var(--mono);font-size:11px;color:var(--dim-2)}
+.mock-body{height:300px;position:relative;overflow:hidden}
+.mock-body .sheen{position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.06) 50%,transparent 70%);
+  transform:translateX(-100%);transition:transform 1s var(--e)}
+.work:hover .sheen{transform:translateX(100%)}
+.m1{background:radial-gradient(60% 80% at 30% 20%,rgba(224,176,82,.4),transparent 60%),linear-gradient(160deg,#171019,#0C0A11)}
+.m2{background:radial-gradient(70% 70% at 70% 30%,rgba(120,130,255,.34),transparent 60%),linear-gradient(160deg,#0E1119,#0C0A11)}
+.m3{background:radial-gradient(60% 80% at 50% 80%,rgba(224,176,82,.34),transparent 60%),linear-gradient(160deg,#14131A,#0C0A11)}
+.m4{background:radial-gradient(70% 60% at 20% 60%,rgba(90,200,180,.28),transparent 60%),linear-gradient(160deg,#0E1512,#0C0A11)}
+.work-cap{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.work-cap h4{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.work-cap span{font-family:var(--mono);font-size:11px;color:var(--dim-2)}
 
-/* ══════════════════════════ NUMBERS ══════════════════════════ */
-.nums-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px}
-.num{padding:34px 40px;border-left:1px solid var(--room-line);transition:border-color var(--room-t)}
-.num:first-child{border-left:none}
-.num-v{font-family:var(--serif);font-weight:300;font-size:clamp(54px,6vw,92px);line-height:1;color:var(--room-text);
-  letter-spacing:.01em;transition:color var(--room-t)}
-.num-v.g{color:var(--gold)}
-.num-v sup{font-size:.42em;vertical-align:.6em}
-.num-l{font-size:13px;color:var(--room-text-soft);margin-top:12px;max-width:200px;transition:color var(--room-t)}
-.zoom{transform:scale(.5);opacity:0;transition:transform 1.2s var(--bounce),opacity .8s}
+/* NUMBERS */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:60px}
+.num{padding:40px 34px}
+.num-v{font-family:var(--disp);font-weight:800;font-size:clamp(52px,6vw,84px);line-height:1;letter-spacing:-.03em;color:var(--text)}
+.num-v.g{color:var(--gold)}.num-v sup{font-size:.4em;vertical-align:.7em;color:var(--gold)}
+.num-l{font-size:13.5px;color:var(--dim);margin-top:14px;max-width:22ch}
+.zoom{transform:scale(.6);opacity:0;transition:transform 1.1s var(--e2),opacity .8s}
 .zoom.in{transform:none;opacity:1}
 
-/* ══════════════════════════ DARK SHOWCASE (2-col, object in right lane) ══════════════════════════ */
-.showcase{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
-  padding:120px clamp(22px,5vw,64px);position:relative}
-.sc-in{max-width:1600px;width:100%;margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;flex:1}
-.sc-l{max-width:640px;position:relative;z-index:3}
-.sc-r{position:relative;z-index:1}
-.showcase .kicker{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:26px}
-.showcase h2{font-family:var(--serif);font-weight:300;font-size:clamp(40px,5.4vw,84px);line-height:1.05;
-  letter-spacing:.01em;color:var(--cream);max-width:16ch}
-.showcase h2 em{font-family:var(--fraunces);font-style:italic;color:var(--gold-soft)}
-.showcase p{font-size:16px;color:rgba(250,247,241,.55);max-width:42ch;margin-top:26px}
-.showcase .foot{display:flex;gap:40px;flex-wrap:wrap;margin-top:44px;
-  font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(250,247,241,.4)}
-@media(max-width:1040px){.sc-in{grid-template-columns:1fr}.sc-r{position:absolute;inset:0;z-index:1;pointer-events:none}}
-
-/* ══════════════════════════ PRICING ══════════════════════════ */
-.toggle{position:relative;display:inline-flex;margin:50px 0 44px;padding:5px;border-radius:100px;
-  background:var(--cream-2);border:1px solid var(--room-line)}
-.toggle .pill{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:100px;
-  background:var(--ink);box-shadow:0 8px 22px rgba(14,12,9,.22);transition:transform .55s var(--bounce)}
+/* PRICING */
+.toggle{position:relative;display:inline-flex;margin:44px 0 40px;padding:5px;border-radius:100px;background:var(--panel);border:1px solid var(--stroke)}
+.toggle .pill{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:100px;background:var(--gold);transition:transform .55s var(--e2)}
 .toggle.alt .pill{transform:translateX(100%)}
-.toggle button{position:relative;z-index:2;background:none;border:none;font-family:var(--sans);font-size:13.5px;
-  font-weight:400;letter-spacing:.02em;padding:12px 30px;border-radius:100px;color:var(--room-text-soft);transition:color .4s}
-.toggle button.on{color:#fff}
-.plans{display:none;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1800px}
+.toggle button{position:relative;z-index:2;background:none;border:none;font-family:var(--sans);font-size:13.5px;font-weight:400;
+  padding:12px 30px;border-radius:100px;color:var(--dim);transition:color .4s}
+.toggle button.on{color:#0B0A0E}
+.plans{display:none;grid-template-columns:repeat(3,1fr);gap:20px;perspective:2000px}
 .plans.on{display:grid}
-.pc-wrap{transition:transform .5s var(--ease)}
-.pc-wrap:hover{transform:translateY(-8px)}
-.pc-wrap.feat{position:relative}
-.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);z-index:5;
-  background:linear-gradient(120deg,var(--gold-deep),var(--gold));color:#fff;font-size:10px;font-weight:500;
-  letter-spacing:.22em;text-transform:uppercase;padding:6px 18px;border-radius:100px;white-space:nowrap;
-  -webkit-backface-visibility:hidden;backface-visibility:hidden}
-.pc{position:relative;min-height:530px;border-radius:26px;transform-style:preserve-3d;transition:transform 1s var(--ease)}
+.pc-wrap{transition:transform .5s var(--e)}.pc-wrap:hover{transform:translateY(-8px)}.pc-wrap.feat{position:relative}
+.badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);z-index:5;background:var(--gold);color:#0B0A0E;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:100px;white-space:nowrap;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.pc{position:relative;min-height:520px;border-radius:24px;transform-style:preserve-3d;transition:transform 1s var(--e)}
 .pc.flip{transform:rotateY(180deg)}
 @media(hover:hover){.plans:not(.touch) .pc-wrap:hover .pc{transform:rotateY(180deg)}}
-.face{position:absolute;inset:0;border-radius:26px;padding:44px 38px;-webkit-backface-visibility:hidden;backface-visibility:hidden;display:flex;flex-direction:column}
-.front{background:var(--card-bg);border:1px solid var(--card-line);box-shadow:0 1px 2px rgba(14,12,9,.05),0 14px 40px rgba(14,12,9,.06)}
-.pc-wrap.feat .front{border-color:rgba(201,146,42,.5);box-shadow:0 24px 60px rgba(201,146,42,.16)}
-.back{background:var(--ink);color:rgba(250,247,241,.9);transform:rotateY(180deg);border:1px solid var(--ink);
-  box-shadow:0 30px 70px rgba(14,12,9,.4)}
-.pname{font-family:var(--serif);font-weight:400;font-size:30px;color:var(--ink)}
-.psub{font-size:13px;color:#6A6252;margin-top:6px;min-height:40px}
-.pprice{font-family:var(--serif);font-weight:300;font-size:86px;line-height:1;color:var(--ink);margin-top:24px}
-.pprice sup{font-size:.34em;vertical-align:.9em;color:var(--gold-deep)}
-.pfreq{font-size:12px;color:#6A6252;margin-top:8px}
-.pmo{display:inline-block;font-size:12px;color:var(--gold-deep);background:rgba(201,146,42,.1);
-  border:1px solid rgba(201,146,42,.25);padding:5px 14px;border-radius:100px;margin-top:14px;align-self:flex-start}
-.phint{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.16em;
-  text-transform:uppercase;color:#6A6252}
-.phint svg{width:15px;height:15px;color:var(--gold-deep);animation:spin 5s linear infinite}
-.back .pname{color:#fff;font-size:23px;margin-bottom:4px}
-.back .pl{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:18px}
-.back .pl li{font-size:13.5px;color:rgba(250,247,241,.8);padding-left:24px;position:relative;line-height:1.5}
-.back .pl li::before{content:'';position:absolute;left:0;top:.58em;width:10px;height:1px;background:var(--gold)}
-.back .note{font-size:12px;color:rgba(250,247,241,.5);margin-top:16px}
-.back .cta{margin-top:auto;display:block;text-align:center;text-decoration:none;background:var(--gold);color:#fff;
-  font-size:13.5px;font-weight:500;letter-spacing:.03em;padding:15px;border-radius:100px;transition:background .35s,color .35s}
-.back .cta:hover{background:var(--gold-soft);color:var(--ink)}
-.pfine{margin-top:34px;font-size:13px;color:var(--room-text-soft);transition:color var(--room-t)}
+.face{position:absolute;inset:0;border-radius:24px;padding:42px 36px;-webkit-backface-visibility:hidden;backface-visibility:hidden;display:flex;flex-direction:column;
+  background:var(--panel);border:1px solid var(--stroke)}
+.pc-wrap.feat .front{border-color:rgba(224,176,82,.4);box-shadow:0 0 60px rgba(224,176,82,.1)}
+.back{transform:rotateY(180deg);background:linear-gradient(160deg,rgba(224,176,82,.1),var(--panel))}
+.pname{font-family:var(--disp);font-weight:700;font-size:26px;letter-spacing:-.02em}
+.psub{font-size:13px;color:var(--dim);margin-top:8px;min-height:38px}
+.pprice{font-family:var(--disp);font-weight:800;font-size:74px;line-height:1;letter-spacing:-.03em;margin-top:22px;color:var(--text)}
+.pprice sup{font-size:.32em;vertical-align:.9em;color:var(--gold)}
+.pfreq{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:8px}
+.pmo{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--gold);background:rgba(224,176,82,.1);
+  border:1px solid rgba(224,176,82,.24);padding:5px 12px;border-radius:100px;margin-top:14px;align-self:flex-start}
+.phint{margin-top:auto;padding-top:24px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim-2)}
+.back .pl{list-style:none;display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.back .pl li{font-size:13.5px;color:var(--text);opacity:.85;padding-left:22px;position:relative;line-height:1.5}
+.back .pl li::before{content:'+';position:absolute;left:0;color:var(--gold);font-family:var(--mono)}
+.back .note{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:14px}
+.back .cta{margin-top:auto;text-align:center;text-decoration:none;background:var(--gold);color:#0B0A0E;font-size:13.5px;
+  font-weight:400;padding:15px;border-radius:100px;transition:background .35s,box-shadow .35s}
+.back .cta:hover{background:var(--gold-2);box-shadow:0 0 30px rgba(224,176,82,.4)}
+.pfine{margin-top:34px;font-family:var(--mono);font-size:12px;color:var(--dim)}
 
-/* ══════════════════════════ PROCESS ══════════════════════════ */
-.steps{position:relative;margin-top:90px}
-.steps svg.spine{position:absolute;top:0;left:50%;transform:translateX(-50%);height:100%;width:120px;overflow:visible}
-.steps svg.spine path{fill:none;stroke:var(--gold);stroke-width:1.5}
-.step{position:relative;display:flex;align-items:center;gap:5vw;margin-bottom:110px}
-.step:last-child{margin-bottom:0}
-.step .half{flex:1}
-.step-card{background:var(--card-bg);border:1px solid var(--card-line);border-radius:24px;padding:42px 44px;
-  max-width:480px;box-shadow:0 1px 2px rgba(14,12,9,.05),0 14px 40px rgba(14,12,9,.07);
-  transition:box-shadow .5s var(--ease),transform .5s var(--ease)}
-.step-card:hover{box-shadow:0 30px 60px rgba(14,12,9,.16);transform:translateY(-6px)}
-.step:nth-child(even) .step-card{margin-left:auto}
-.step-node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:58px;height:58px;
-  border-radius:50%;background:var(--card-bg);border:1px solid rgba(201,146,42,.5);display:flex;align-items:center;
-  justify-content:center;font-family:var(--serif);font-size:21px;font-weight:500;color:var(--gold-deep);
-  box-shadow:0 10px 30px rgba(14,12,9,.12)}
-.step-k{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:12px}
-.step-card h3{font-family:var(--serif);font-weight:400;font-size:27px;margin-bottom:10px;color:var(--ink)}
-.step-card p{font-size:14px;color:#6A6252}
+/* PROCESS — no connecting line, glowing numbered steps */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px}
+.step{padding:40px 32px;position:relative}
+.step .no{font-family:var(--disp);font-weight:800;font-size:64px;line-height:1;letter-spacing:-.04em;
+  background:linear-gradient(180deg,var(--gold-2),var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.step h3{font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-.01em;margin:22px 0 10px}
+.step p{font-size:13.5px;color:var(--dim)}
 
-/* ══════════════════════════ CONTACT ══════════════════════════ */
-.contact{display:grid;grid-template-columns:1fr 1fr;min-height:92vh}
-.c-dark{background:var(--ink);color:rgba(250,247,241,.9);padding:110px clamp(28px,5vw,64px);display:flex;
-  flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.c-dark::after{content:'';position:absolute;width:560px;height:560px;border-radius:50%;right:-220px;bottom:-220px;
-  background:radial-gradient(circle,rgba(201,146,42,.18),transparent 70%);pointer-events:none}
-.c-dark .eyebrow{color:var(--gold-soft)}
-.c-h{font-family:var(--serif);font-weight:300;font-size:clamp(42px,4.6vw,70px);line-height:1.06;color:#fff;margin-top:22px}
-.c-h em{font-family:var(--fraunces);font-style:italic;color:var(--gold-soft)}
-.c-sub{font-size:15px;color:rgba(250,247,241,.55);max-width:400px;margin:20px 0 44px}
-.clinks{display:flex;flex-direction:column;gap:12px;max-width:430px}
-.clink{display:flex;align-items:center;gap:18px;text-decoration:none;padding:17px 20px;border:1px solid rgba(255,255,255,.1);
-  border-radius:16px;transition:border-color .4s,background .4s,transform .4s var(--ease)}
-.clink:hover{border-color:rgba(201,146,42,.6);background:rgba(255,255,255,.04);transform:translateX(8px)}
-.clink .ico{width:42px;height:42px;flex:0 0 auto;border-radius:12px;display:flex;align-items:center;justify-content:center;
-  background:rgba(201,146,42,.12);border:1px solid rgba(201,146,42,.28);color:var(--gold-soft)}
-.clink .ico svg{width:19px;height:19px}
-.clink .l{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(250,247,241,.42)}
-.clink .v{font-size:15px;color:rgba(250,247,241,.92);margin-top:2px}
-.c-loc{margin-top:44px;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:rgba(250,247,241,.34)}
-.c-light{background:var(--paper);padding:110px clamp(28px,5vw,64px);display:flex;flex-direction:column;justify-content:center}
-.f-h{font-family:var(--serif);font-weight:400;font-size:31px;color:var(--ink);margin-bottom:8px}
-.f-sub{font-size:14px;color:#6A6252;margin-bottom:36px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}.frow.one{grid-template-columns:1fr}
-.field label{display:block;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#6A6252;margin-bottom:9px}
-.field label b{color:var(--gold-deep)}
-.field input,.field select,.field textarea{width:100%;font-family:var(--sans);font-weight:300;font-size:15px;color:var(--ink);
-  background:var(--cream);border:1px solid var(--card-line);border-radius:13px;padding:15px 18px;outline:none;
+/* INTERLUDE — full-screen 3D breather rooms */
+.interlude{min-height:100vh;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  max-width:1560px;margin:0 auto;padding:120px clamp(22px,5vw,72px);position:relative}
+.interlude.rev{direction:rtl}.interlude.rev>*{direction:ltr}
+.il-l{max-width:600px;position:relative;z-index:3}
+.il-r{position:relative;z-index:1}
+.il-l h2{font-family:var(--disp);font-weight:800;font-size:clamp(40px,5.4vw,80px);line-height:.98;letter-spacing:-.03em}
+.il-l p{font-size:17px;color:var(--dim);max-width:44ch;margin-top:24px;line-height:1.8}
+.il-l .stat{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap}
+.il-l .stat b{font-family:var(--disp);font-weight:800;font-size:40px;color:var(--gold);letter-spacing:-.02em;display:block}
+.il-l .stat span{font-family:var(--mono);font-size:12px;color:var(--dim-2)}
+@media(max-width:1040px){.interlude{grid-template-columns:1fr;min-height:auto;padding:100px clamp(22px,5vw,72px)}.il-r{position:absolute;inset:0;z-index:0;pointer-events:none}}
+
+/* CONTACT — dark, centered, sexy */
+.contact{text-align:center;padding:clamp(110px,16vh,200px) clamp(22px,5vw,72px)}
+.contact .tag{margin-bottom:26px}
+.contact h2{font-family:var(--disp);font-weight:800;font-size:clamp(48px,8vw,140px);line-height:.94;letter-spacing:-.04em}
+.contact .lead{margin:26px auto 0;text-align:center}
+.c-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:44px auto 0;max-width:760px}
+.c-link{display:flex;align-items:center;gap:12px;text-decoration:none;padding:14px 22px;border-radius:100px;
+  background:var(--panel);border:1px solid var(--stroke);transition:border-color .4s,background .4s,transform .4s var(--e)}
+.c-link:hover{border-color:var(--gold);background:rgba(224,176,82,.06);transform:translateY(-3px)}
+.c-link svg{width:18px;height:18px;color:var(--gold)}
+.c-link span{font-family:var(--mono);font-size:13px;color:var(--text)}
+.c-form{max-width:640px;margin:56px auto 0;text-align:left}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}.frow.one{grid-template-columns:1fr}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.field label b{color:var(--gold)}
+.field input,.field select,.field textarea{width:100%;font-family:var(--sans);font-weight:300;font-size:15px;color:var(--text);
+  background:var(--panel);border:1px solid var(--stroke);border-radius:14px;padding:15px 18px;outline:none;
   transition:border-color .35s,background .35s;-webkit-appearance:none;appearance:none}
-.field textarea{resize:vertical;min-height:104px}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold-deep);background:#fff}
-.field input::placeholder,.field textarea::placeholder{color:rgba(106,98,82,.5)}
-.f-send{margin-top:26px}.f-send .in{width:100%;justify-content:center;padding:18px}
-.f-note{font-size:12.5px;color:#6A6252;margin-top:16px;text-align:center}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:rgba(224,176,82,.04)}
+.field input::placeholder,.field textarea::placeholder{color:var(--dim-2)}
+.field select option{background:#12101A}
+.c-send{margin-top:22px}.c-send .in{width:100%;justify-content:center;padding:18px}
+.c-note{font-family:var(--mono);font-size:11px;color:var(--dim-2);text-align:center;margin-top:16px}
 
-/* ══════════════════════════ FOOTER ══════════════════════════ */
-footer{position:relative;padding:90px clamp(22px,5vw,64px) 46px;overflow:hidden;background:#080604;color:rgba(250,247,241,.7);z-index:2}
-.fline{position:absolute;top:0;left:0;right:0;height:1px;transform:scaleX(0);transform-origin:left;
-  background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold-soft) 50%,var(--gold) 70%,transparent);
-  background-size:220% 100%;transition:transform 1.6s var(--ease)}
-.fline.in{transform:scaleX(1);animation:shim 5s linear infinite}
-.f-grid{max-width:1340px;margin:0 auto;display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;position:relative;z-index:1}
-.f-brand .w{font-family:var(--serif);font-size:30px;font-weight:400;color:var(--cream)}.f-brand .w b{color:var(--gold)}
-.f-brand p{font-size:13px;color:rgba(250,247,241,.4);margin-top:10px;max-width:260px}
-.f-col h4{font-size:10.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,247,241,.4);margin-bottom:18px}
-.f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.f-col a{font-size:14px;color:rgba(250,247,241,.72);text-decoration:none;transition:color .3s}.f-col a:hover{color:var(--gold-soft)}
-.f-bot{max-width:1340px;margin:64px auto 0;padding-top:26px;border-top:1px solid rgba(255,255,255,.08);display:flex;
-  justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:12.5px;color:rgba(250,247,241,.4);position:relative;z-index:1}
-.f-mark{position:absolute;left:50%;bottom:-4vw;transform:translateX(-50%);z-index:0;font-family:var(--serif);font-weight:300;
-  font-size:24vw;line-height:1;letter-spacing:.06em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.04);
-  user-select:none;pointer-events:none;white-space:nowrap}
+/* FOOTER — no lines */
+footer{padding:80px clamp(22px,5vw,72px) 50px;position:relative;overflow:hidden}
+.f-grid{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;gap:50px;flex-wrap:wrap;position:relative;z-index:2}
+.f-brand .w{font-family:var(--disp);font-weight:800;font-size:28px;letter-spacing:-.02em}.f-brand .w b{color:var(--gold)}
+.f-brand p{font-size:13.5px;color:var(--dim);margin-top:12px;max-width:280px}
+.f-col h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim-2);margin-bottom:18px}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+.f-col a{font-size:14px;color:var(--dim);text-decoration:none;transition:color .3s}.f-col a:hover{color:var(--gold)}
+.f-bot{max-width:1400px;margin:60px auto 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;color:var(--dim-2);position:relative;z-index:2}
+.f-mark{position:absolute;left:50%;bottom:-6vw;transform:translateX(-50%);z-index:0;font-family:var(--disp);font-weight:800;
+  font-size:26vw;line-height:1;letter-spacing:-.04em;color:rgba(255,255,255,.02);user-select:none;pointer-events:none;white-space:nowrap}
 
-/* ══════════════════════════ RESPONSIVE ══════════════════════════ */
+/* responsive */
 @media(max-width:1040px){
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:120px}
-  .hero-r{position:absolute;inset:0;z-index:1;pointer-events:none}
-  .contact{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:130px}
+  .hero-r{position:absolute;inset:0;z-index:0;pointer-events:none}
+  .svc-grid{grid-template-columns:1fr}
+  .nums,.proc{grid-template-columns:1fr 1fr}
 }
-@media(max-width:900px){
-  .nav-links{display:none}
-  .nav.small .nav-in{max-width:none;margin:10px 14px 0;padding:9px 10px 9px 20px}
-  .hs-pin{position:relative;height:auto;overflow:visible}
-  .hs-head{padding:0 22px 26px}.hs-progress{display:none}
-  .hs-track{overflow-x:auto;padding:8px 22px 34px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-  .svc{scroll-snap-align:center;width:82vw;padding:40px 30px}
-  .nums-grid{grid-template-columns:1fr 1fr}
-  .num{border-left:none;border-top:1px solid var(--room-line);padding:26px 8px}
-  .num:nth-child(-n+2){border-top:none}
-  .plans{grid-template-columns:1fr;gap:30px}.pc{min-height:500px}
-  .steps svg.spine{left:29px;transform:none}
-  .step{margin-bottom:56px;gap:0}.step .half.empty{display:none}
-  .step-node{left:29px}.step-card{margin-left:64px!important;max-width:none}
+@media(max-width:820px){
+  .nav-links{display:none}.nav.small .nav-in{max-width:none;margin:10px 14px 0}
+  .work-track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:12px}
+  .work{scroll-snap-align:center;width:84vw}
+  .plans{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
 }
 @media(max-width:520px){
-  .frow{grid-template-columns:1fr}.hero-actions{width:100%}
-  .hero-actions .btn{flex:1}.hero-actions .btn .in{justify-content:center}
-  .mq span{font-size:20px}
+  .nums,.proc{grid-template-columns:1fr}
+  .hero-act{width:100%}.hero-act .btn{flex:1}.hero-act .btn .in{justify-content:center}
 }
-
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  .rv,.rv-l,.rv-r,.rv-z,.zoom,.split-c{opacity:1!important;transform:none!important}
-  .hero-h .drop i{transform:none}.hero-h .ul::after{transform:scaleX(1)}.fline{transform:scaleX(1)}
+  .r,.rw i,.zoom{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
 <body>
-
-<div class="room-bg" aria-hidden="true"></div>
-<div class="room-grad" id="roomGrad" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
+<div class="bg" aria-hidden="true"></div>
+<div class="codeflow" id="codeflow" aria-hidden="true"></div>
 <div class="stage" aria-hidden="true"><canvas id="c"></canvas></div>
-<div class="fallback-orb" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="fallback" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
 
-<div class="loader" id="loader">
-  <div class="loader-mark"><span>V</span><span>elox</span><span>&nbsp;AI</span></div>
-  <div class="loader-bar"><i id="loadBar"></i></div>
-  <div class="loader-pct" id="loadPct">0</div>
-</div>
+<div class="load" id="load"><div class="load-m"><span>Velox</span><span>&nbsp;AI</span></div><div class="load-p" id="loadP">LOADING 0%</div></div>
+<div class="cd" id="cd" aria-hidden="true"></div><div class="cr" id="cr" aria-hidden="true"></div>
 
-<div class="cur-dot" id="curDot" aria-hidden="true"></div>
-<div class="cur-ring" id="curRing" aria-hidden="true"></div>
-
-<nav class="nav" id="nav">
-  <div class="nav-in">
-    <a class="logo mag" href="#top" aria-label="Velox AI — home"><span class="w"><b>V</b>elox</span><span class="t">AI</span></a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a class="nav-cta mag" href="https://wa.me/96171565356" target="_blank" rel="noopener">Start a project</a>
-  </div>
-</nav>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="logo mag" href="#top" aria-label="Velox AI home"><span class="dot"></span><span class="w"><b>V</b>elox</span></a>
+  <ul class="nav-links"><li><a href="#services">Services</a></li><li><a href="#work">Work</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#process">Process</a></li><li><a href="#contact">Contact</a></li></ul>
+  <a class="nav-cta mag" href="https://wa.me/96171565356" target="_blank" rel="noopener">Start a project</a>
+</div></nav>
 
 <main>
-<section class="hero" id="top" data-room="light">
+<!-- HERO -->
+<section class="hero" id="top">
   <div class="hero-l">
-    <div class="hero-eyebrow eyebrow">Beirut, Lebanon — Digital Atelier</div>
-    <h1 class="hero-h" id="heroH">We craft <em>extraordinary</em> websites <span class="ul">&amp; AI</span> for ambitious brands.</h1>
-    <p class="hero-desc">Custom websites and AI systems, designed by hand — never templates. <strong>Live in three days.</strong> Serving Lebanon and the Middle East, in Arabic and English.</p>
-    <div class="hero-actions">
-      <a class="btn btn-ink mag" href="#pricing"><span class="in">View plans
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></a>
-      <a class="btn btn-ghost mag" href="https://wa.me/96171565356" target="_blank" rel="noopener"><span class="in">WhatsApp us</span></a>
-      <div class="hero-from"><span class="l">From</span><span class="v">$199</span></div>
+    <span class="tag hero-tag r">Beirut · Digital Studio</span>
+    <h1 class="hero-h rl">
+      <span class="rw"><i>We build</i></span><br>
+      <span class="rw"><i class="grad">extraordinary</i></span><br>
+      <span class="rw"><i>brands online.</i></span>
+    </h1>
+    <div class="hero-sub r d2"><span class="pulse"></span>Custom websites &amp; AI systems — live in 3 days</div>
+    <p class="hero-desc r d3">Designed by hand, never templated. We craft fast, beautiful websites and AI that answers customers, captures leads and books appointments — <b>around the clock</b>.</p>
+    <div class="hero-act r d4">
+      <a class="btn btn-g mag" href="#pricing"><span class="in">View plans <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12 12 4M6 4h6v6"/></svg></span></a>
+      <a class="btn btn-o mag" href="https://wa.me/96171565356" target="_blank" rel="noopener"><span class="in">WhatsApp us</span></a>
+      <span class="hero-from">from <b>$199</b></span>
     </div>
   </div>
   <div class="hero-r" aria-hidden="true"></div>
-  <div class="hero-scroll"><div class="ln"><i></i></div><span>Scroll</span></div>
+  <span class="scroll-cue">Scroll</span>
 </section>
 
-<div class="marquee" data-room="light">
-  <div class="mq" id="mq">
-    <span>Custom Websites<b></b></span><span>AI Chatbots<b></b></span><span>Lead Capture<b></b></span><span>Booking Systems<b></b></span><span>Live in 3 Days<b></b></span><span>Arabic &amp; English<b></b></span>
-    <span>Custom Websites<b></b></span><span>AI Chatbots<b></b></span><span>Lead Capture<b></b></span><span>Booking Systems<b></b></span><span>Live in 3 Days<b></b></span><span>Arabic &amp; English<b></b></span>
-  </div>
-</div>
-
-<section class="hs" id="services" data-room="light">
-  <div class="hs-pin">
-    <div class="hs-head">
-      <div class="eyebrow rv">What we do</div>
-      <h2 class="h2 rv d1" style="margin-top:22px">Two crafts, <em>mastered.</em></h2>
-      <div class="hs-progress rv d2"><i id="hsBar"></i></div>
-    </div>
-    <div class="hs-track" id="hsTrack">
-      <article class="svc tilt"><div class="n">01</div><div class="k">The Foundation</div><h3>Professional Websites</h3>
-        <p>A fast, beautiful, custom website built specifically for your business. Every pixel designed by hand — never a template.</p>
-        <ul><li>Fully custom design, unique to your brand</li><li>Flawless on mobile, tablet, and desktop</li><li>SEO optimised to rank on Google from day one</li><li>WhatsApp, socials, and Google Maps built in</li><li>Free edits after delivery on every plan</li></ul>
-        <div class="p"><b>$199</b> one-time · zero monthly fees</div></article>
-      <article class="svc tilt"><div class="n">02</div><div class="k">The Multiplier</div><h3>AI Chatbots</h3>
-        <p>An AI trained on your business that answers every customer, captures every lead, and books appointments — 24 hours a day.</p>
-        <ul><li>Answers customer questions instantly, any hour</li><li>Captures the name and number of every lead</li><li>Sends every lead straight to your WhatsApp</li><li>Fully bilingual — Arabic and English, automatically</li><li>Updated and improved monthly</li></ul>
-        <div class="p"><b>$299</b> setup + from $49/month</div></article>
-      <article class="svc tilt"><div class="n">03</div><div class="k">The Engine</div><h3>Booking &amp; Lead Systems</h3>
-        <p>Appointment booking, lead qualification, and follow-up flows that turn visitors into paying customers while you work.</p>
-        <ul><li>Appointment booking without your involvement</li><li>Lead qualification and follow-up flows</li><li>Google Sheets lead log, always up to date</li><li>Instant WhatsApp notifications</li></ul>
-        <div class="p"><b>Included</b> in Hybrid plans</div></article>
-      <article class="svc tilt"><div class="n">04</div><div class="k">The Care</div><h3>Launch &amp; Beyond</h3>
-        <p>We stay after launch. Edits, support, and optimisation — available on WhatsApp every single day.</p>
-        <ul><li>Post-launch edits included in every plan</li><li>Speed and performance optimisation</li><li>You approve before you pay a dollar</li><li>Support in Arabic and English, daily</li></ul>
-        <div class="p"><b>Always</b> part of the deal</div></article>
-    </div>
-  </div>
-</section>
-
-<section class="showcase" data-room="dark">
-  <div class="sc-in">
-    <div class="sc-l">
-      <div class="kicker rv">Designed in the dark, built for the light</div>
-      <h2 class="split">A website is not a page. It is your <em>hardest-working</em> employee.</h2>
-      <p class="rv d2">It never sleeps, never forgets a lead, and greets every visitor like your best salesperson would.</p>
-      <div class="foot rv d3"><span>Custom built</span><span>Live in 3 days</span><span>From $199</span></div>
-    </div>
-    <div class="sc-r" aria-hidden="true"></div>
-  </div>
-</section>
-
-<section class="sec" id="numbers" data-room="light">
+<!-- SERVICES -->
+<section class="sec" id="services">
   <div class="wrap">
-    <div class="eyebrow rv">By the numbers</div>
-    <h2 class="h2 rv d1" style="margin-top:20px">Results that <em>speak.</em></h2>
-    <div class="nums-grid">
-      <div class="num"><div class="num-v zoom"><span class="count" data-to="3">0</span></div><div class="num-l">Business days from questionnaire to a live website.</div></div>
-      <div class="num"><div class="num-v g zoom"><sup>$</sup><span class="count" data-to="199">0</span></div><div class="num-l">Starting price for a full custom website. One-time.</div></div>
-      <div class="num"><div class="num-v zoom"><span class="count" data-to="24">0</span>/7</div><div class="num-l">Your AI answers customers — nights, weekends, holidays.</div></div>
-      <div class="num"><div class="num-v g zoom"><span class="count" data-to="0">0</span></div><div class="num-l">Monthly fees on website-only plans. You pay once. Done.</div></div>
+    <div class="svc-head">
+      <div><span class="tag r">What we do</span><h2 class="h-lg rl" style="margin-top:20px"><span class="rw"><i>Everything to</i></span><br><span class="rw"><i class="grad">grow online.</i></span></h2></div>
+      <p class="lead r d2">Two things, done exceptionally well — a site that makes you look world-class, and an AI that works while you sleep.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="glass svc tilt r"><span class="idx">01 — The Foundation</span><h3>Professional Websites</h3><p>A fast, custom website built specifically for your business. Every pixel by hand, never a template.</p><ul><li>Fully custom design, unique to your brand</li><li>Flawless on mobile, tablet and desktop</li><li>SEO-optimised to rank from day one</li><li>WhatsApp, socials &amp; Google Maps built in</li></ul><div class="pr"><b>$199</b> one-time · zero monthly fees</div></article>
+      <article class="glass svc tilt r d1"><span class="idx">02 — The Multiplier</span><h3>AI Chatbots</h3><p>An AI trained on your business that answers every customer, captures every lead and books appointments — 24/7.</p><ul><li>Answers questions instantly, any hour</li><li>Captures name &amp; number of every lead</li><li>Sends leads straight to your WhatsApp</li><li>Bilingual — Arabic &amp; English, automatically</li></ul><div class="pr"><b>$299</b> setup + from $49/mo</div></article>
+      <article class="glass svc tilt r d2"><span class="idx">03 — The Engine</span><h3>Booking &amp; Lead Systems</h3><p>Appointment booking, lead qualification and follow-up flows that turn visitors into paying customers.</p><ul><li>Booking without your involvement</li><li>Lead qualification &amp; follow-up flows</li><li>Google Sheets lead log, always current</li><li>Instant WhatsApp notifications</li></ul><div class="pr"><b>Included</b> in Hybrid plans</div></article>
+      <article class="glass svc tilt r d3"><span class="idx">04 — The Care</span><h3>Launch &amp; Beyond</h3><p>We stay after launch. Edits, support and optimisation — available on WhatsApp every single day.</p><ul><li>Post-launch edits on every plan</li><li>Speed &amp; performance optimisation</li><li>You approve before you pay a dollar</li><li>Support in Arabic &amp; English, daily</li></ul><div class="pr"><b>Always</b> part of the deal</div></article>
     </div>
   </div>
 </section>
 
-<section class="sec" id="pricing" data-room="light">
+<!-- WORK -->
+<section class="sec" id="work">
   <div class="wrap">
-    <div class="rv"><div class="eyebrow">Pricing</div>
-      <h2 class="h2" style="margin-top:20px">Clear prices. <em>No surprises.</em></h2>
-      <p class="lead">Every plan includes design, build, delivery, and post-launch support. Website plans never carry a monthly fee.</p></div>
-    <div class="toggle rv d1" id="toggle" role="tablist" aria-label="Choose a service">
-      <div class="pill" aria-hidden="true"></div>
-      <button class="on" id="tabWeb" role="tab" aria-selected="true">Professional Website</button>
-      <button id="tabHyb" role="tab" aria-selected="false">Website + AI Chatbot</button>
+    <span class="tag r">Selected work</span>
+    <h2 class="h-lg rl" style="margin-top:20px"><span class="rw"><i>Sites that</i></span> <span class="rw"><i class="grad">convert.</i></span></h2>
+    <div class="work-track" id="workTrack">
+      <div class="work r"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>velox.ai/dental-clinic</span></div><div class="mock-body m1"><div class="sheen"></div></div></div><div class="work-cap"><h4>Dental Clinic</h4><span>Website + AI booking</span></div></div>
+      <div class="work r d1"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>velox.ai/restaurant</span></div><div class="mock-body m2"><div class="sheen"></div></div></div><div class="work-cap"><h4>Restaurant</h4><span>Menu + reservations</span></div></div>
+      <div class="work r d2"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>velox.ai/law-firm</span></div><div class="mock-body m3"><div class="sheen"></div></div></div><div class="work-cap"><h4>Law Firm</h4><span>Website + lead capture</span></div></div>
+      <div class="work r d3"><div class="mock"><div class="mock-bar"><i></i><i></i><i></i><span>velox.ai/spa</span></div><div class="mock-body m4"><div class="sheen"></div></div></div><div class="work-cap"><h4>Wellness Spa</h4><span>Bookings + AI concierge</span></div></div>
     </div>
+  </div>
+</section>
+
+<!-- INTERLUDE 1 -->
+<section class="interlude" id="il1">
+  <div class="il-l">
+    <span class="tag r">Why it matters</span>
+    <h2 class="rl" style="margin-top:20px"><span class="rw"><i>Built to</i></span> <span class="rw"><i class="grad">convert.</i></span><br><span class="rw"><i>Not just impress.</i></span></h2>
+    <p class="r d2">Beautiful is the baseline. Every section, every word and every interaction is engineered to turn a visitor into a booking.</p>
+    <div class="stat r d3"><div><b>3×</b><span>more enquiries</span></div><div><b>24/7</b><span>always answering</span></div><div><b>0</b><span>missed leads</span></div></div>
+  </div>
+  <div class="il-r" aria-hidden="true"></div>
+</section>
+
+<!-- NUMBERS -->
+<section class="sec" id="numbers">
+  <div class="wrap">
+    <span class="tag r">By the numbers</span>
+    <h2 class="h-lg rl" style="margin-top:20px"><span class="rw"><i>Results that</i></span> <span class="rw"><i class="grad">speak.</i></span></h2>
+    <div class="nums">
+      <div class="glass num r"><div class="num-v zoom"><span class="count" data-to="3">0</span></div><div class="num-l">Business days from brief to a live website.</div></div>
+      <div class="glass num r d1"><div class="num-v g zoom"><sup>$</sup><span class="count" data-to="199">0</span></div><div class="num-l">Starting price for a full custom website. One-time.</div></div>
+      <div class="glass num r d2"><div class="num-v zoom"><span class="count" data-to="24">0</span>/7</div><div class="num-l">Your AI answers — nights, weekends, holidays.</div></div>
+      <div class="glass num r d3"><div class="num-v g zoom"><span class="count" data-to="0">0</span></div><div class="num-l">Monthly fees on website-only plans. Pay once.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <span class="tag r">Pricing</span>
+    <h2 class="h-lg rl" style="margin-top:20px"><span class="rw"><i>Clear prices.</i></span> <span class="rw"><i class="grad">No surprises.</i></span></h2>
+    <p class="lead r d2" style="margin-top:22px">Every plan includes design, build, delivery and post-launch support. Website plans never carry a monthly fee.</p>
+    <div class="toggle r d2" id="toggle" role="tablist"><div class="pill"></div><button class="on" id="tabWeb" role="tab">Professional Website</button><button id="tabHyb" role="tab">Website + AI Chatbot</button></div>
     <div class="plans on" id="plansWeb">
-      <div class="pc-wrap rv"><div class="pc"><div class="face front"><div class="pname">Starter</div><p class="psub">For small businesses making their first move online.</p><div class="pprice"><sup>$</sup>199</div><div class="pfreq">one-time · no monthly fees</div><div class="phint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 1-4.6 1.9M8 1.5 5.5 1M8 1.5 7.5 4"/></svg><span class="ph-t">Hover to see what's inside</span></div></div><div class="face back"><div class="pname">Starter</div><ul class="pl"><li>Single-page custom website</li><li>Mobile responsive design</li><li>Services and contact sections</li><li>WhatsApp and social links</li><li>Google Maps embed</li><li>1 month of free edits</li></ul><p class="note">Design, build, and launch included. Live in 3 days.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20I'm%20interested%20in%20the%20Starter%20website%20plan%20(%24199)." target="_blank" rel="noopener">Start with Starter</a></div></div></div>
-      <div class="pc-wrap feat rv d1"><span class="badge">Most Popular</span><div class="pc"><div class="face front"><div class="pname">Business</div><p class="psub">The full website — multiple pages, gallery, booking form.</p><div class="pprice"><sup>$</sup>399</div><div class="pfreq">one-time · no monthly fees</div><div class="phint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 1-4.6 1.9M8 1.5 5.5 1M8 1.5 7.5 4"/></svg><span class="ph-t">Hover to see what's inside</span></div></div><div class="face back"><div class="pname">Business</div><ul class="pl"><li>Multi-page custom website</li><li>Professional photo gallery</li><li>Booking and appointment form</li><li>Reviews and testimonials section</li><li>Full SEO optimisation</li><li>Priority 3-day delivery</li><li>3 months of free edits</li></ul><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20I'm%20interested%20in%20the%20Business%20website%20plan%20(%24399)." target="_blank" rel="noopener">Start with Business</a></div></div></div>
-      <div class="pc-wrap rv d2"><div class="pc"><div class="face front"><div class="pname">Premium</div><p class="psub">Advanced animation and elevated design for the strongest first impression.</p><div class="pprice"><sup>$</sup>599</div><div class="pfreq">one-time · no monthly fees</div><div class="phint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 1-4.6 1.9M8 1.5 5.5 1M8 1.5 7.5 4"/></svg><span class="ph-t">Hover to see what's inside</span></div></div><div class="face back"><div class="pname">Premium</div><ul class="pl"><li>Everything in Business</li><li>Advanced scroll animations</li><li>Custom illustrated sections</li><li>Blog or portfolio section</li><li>Advanced lead-capture forms</li><li>Speed and performance optimised</li><li>6 months of free edits</li></ul><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20I'm%20interested%20in%20the%20Premium%20website%20plan%20(%24599)." target="_blank" rel="noopener">Start with Premium</a></div></div></div>
+      <div class="pc-wrap r"><div class="pc"><div class="face front"><div class="pname">Starter</div><p class="psub">For small businesses making their first move online.</p><div class="pprice"><sup>$</sup>199</div><div class="pfreq">one-time · no monthly fees</div><div class="phint ph-t">Hover to flip →</div></div><div class="face back"><div class="pname">Starter</div><ul class="pl"><li>Single-page custom website</li><li>Mobile responsive design</li><li>Services &amp; contact sections</li><li>WhatsApp &amp; social links</li><li>Google Maps embed</li><li>1 month of free edits</li></ul><p class="note">Live in 3 days.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20Starter%20website%20(%24199)." target="_blank" rel="noopener">Start with Starter</a></div></div></div>
+      <div class="pc-wrap feat r d1"><span class="badge">Most Popular</span><div class="pc"><div class="face front"><div class="pname">Business</div><p class="psub">The full website — multiple pages, gallery, booking form.</p><div class="pprice"><sup>$</sup>399</div><div class="pfreq">one-time · no monthly fees</div><div class="phint ph-t">Hover to flip →</div></div><div class="face back"><div class="pname">Business</div><ul class="pl"><li>Multi-page custom website</li><li>Professional photo gallery</li><li>Booking &amp; appointment form</li><li>Reviews &amp; testimonials</li><li>Full SEO optimisation</li><li>3 months of free edits</li></ul><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20Business%20website%20(%24399)." target="_blank" rel="noopener">Start with Business</a></div></div></div>
+      <div class="pc-wrap r d2"><div class="pc"><div class="face front"><div class="pname">Premium</div><p class="psub">Advanced animation &amp; elevated design for the strongest impression.</p><div class="pprice"><sup>$</sup>599</div><div class="pfreq">one-time · no monthly fees</div><div class="phint ph-t">Hover to flip →</div></div><div class="face back"><div class="pname">Premium</div><ul class="pl"><li>Everything in Business</li><li>Advanced scroll animations</li><li>Custom illustrated sections</li><li>Blog or portfolio section</li><li>Advanced lead-capture forms</li><li>6 months of free edits</li></ul><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20Premium%20website%20(%24599)." target="_blank" rel="noopener">Start with Premium</a></div></div></div>
     </div>
     <div class="plans" id="plansHyb">
-      <div class="pc-wrap rv"><div class="pc"><div class="face front"><div class="pname">Hybrid Starter</div><p class="psub">A great website plus a smart AI for everyday customer handling.</p><div class="pprice"><sup>$</sup>299</div><div class="pfreq">one-time setup</div><span class="pmo">+ $49 / month</span><div class="phint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 1-4.6 1.9M8 1.5 5.5 1M8 1.5 7.5 4"/></svg><span class="ph-t">Hover to see what's inside</span></div></div><div class="face back"><div class="pname">Hybrid Starter</div><ul class="pl"><li>Starter website — single page</li><li>AI chatbot trained on your business</li><li>FAQ and inquiry automation</li><li>Lead capture — name and phone</li><li>WhatsApp notifications</li><li>Arabic and English</li><li>Monthly AI updates</li></ul><p class="note">$49/month keeps the AI running, updated, and supported.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20I'm%20interested%20in%20the%20Hybrid%20Starter%20plan%20(%24299%20%2B%20%2449%2Fmo)." target="_blank" rel="noopener">Start with Hybrid Starter</a></div></div></div>
-      <div class="pc-wrap feat rv d1"><span class="badge">Best Value</span><div class="pc"><div class="face front"><div class="pname">Hybrid Pro</div><p class="psub">Full website plus an AI that books appointments automatically.</p><div class="pprice"><sup>$</sup>499</div><div class="pfreq">one-time setup</div><span class="pmo">+ $99 / month</span><div class="phint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 1-4.6 1.9M8 1.5 5.5 1M8 1.5 7.5 4"/></svg><span class="ph-t">Hover to see what's inside</span></div></div><div class="face back"><div class="pname">Hybrid Pro</div><ul class="pl"><li>Business website — multi-page</li><li>Advanced AI chatbot</li><li>Appointment booking automation</li><li>Lead qualification flows</li><li>Google Sheets lead log</li><li>Instant WhatsApp notifications</li><li>Priority support, daily</li></ul><p class="note">$99/month keeps the AI running, updated, and supported.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20I'm%20interested%20in%20the%20Hybrid%20Pro%20plan%20(%24499%20%2B%20%2499%2Fmo)." target="_blank" rel="noopener">Start with Hybrid Pro</a></div></div></div>
-      <div class="pc-wrap rv d2"><div class="pc"><div class="face front"><div class="pname">Hybrid Elite</div><p class="psub">Premium website, advanced AI, maximum performance.</p><div class="pprice"><sup>$</sup>799</div><div class="pfreq">one-time setup</div><span class="pmo">+ $149 / month</span><div class="phint"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 1-4.6 1.9M8 1.5 5.5 1M8 1.5 7.5 4"/></svg><span class="ph-t">Hover to see what's inside</span></div></div><div class="face back"><div class="pname">Hybrid Elite</div><ul class="pl"><li>Premium website — advanced design</li><li>Full AI with custom flows</li><li>Sales and booking automation</li><li>Full lead pipeline management</li><li>Monthly analytics report</li><li>Dedicated account manager</li><li>Weekly AI optimisations</li></ul><p class="note">$149/month keeps the AI running, updated, and supported.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20I'm%20interested%20in%20the%20Hybrid%20Elite%20plan%20(%24799%20%2B%20%24149%2Fmo)." target="_blank" rel="noopener">Start with Hybrid Elite</a></div></div></div>
+      <div class="pc-wrap r"><div class="pc"><div class="face front"><div class="pname">Hybrid Starter</div><p class="psub">A great website plus a smart AI for everyday customer handling.</p><div class="pprice"><sup>$</sup>299</div><div class="pfreq">one-time setup</div><span class="pmo">+ $49 / month</span><div class="phint ph-t">Hover to flip →</div></div><div class="face back"><div class="pname">Hybrid Starter</div><ul class="pl"><li>Starter website — single page</li><li>AI chatbot for your business</li><li>FAQ &amp; inquiry automation</li><li>Lead capture — name &amp; phone</li><li>WhatsApp notifications</li><li>Arabic &amp; English</li></ul><p class="note">$49/mo keeps the AI running &amp; supported.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20Hybrid%20Starter%20(%24299%2B%2449%2Fmo)." target="_blank" rel="noopener">Start with Hybrid Starter</a></div></div></div>
+      <div class="pc-wrap feat r d1"><span class="badge">Best Value</span><div class="pc"><div class="face front"><div class="pname">Hybrid Pro</div><p class="psub">Full website plus an AI that books appointments automatically.</p><div class="pprice"><sup>$</sup>499</div><div class="pfreq">one-time setup</div><span class="pmo">+ $99 / month</span><div class="phint ph-t">Hover to flip →</div></div><div class="face back"><div class="pname">Hybrid Pro</div><ul class="pl"><li>Business website — multi-page</li><li>Advanced AI chatbot</li><li>Appointment booking automation</li><li>Lead qualification flows</li><li>Google Sheets lead log</li><li>Priority support, daily</li></ul><p class="note">$99/mo keeps the AI running &amp; supported.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20Hybrid%20Pro%20(%24499%2B%2499%2Fmo)." target="_blank" rel="noopener">Start with Hybrid Pro</a></div></div></div>
+      <div class="pc-wrap r d2"><div class="pc"><div class="face front"><div class="pname">Hybrid Elite</div><p class="psub">Premium website, advanced AI, maximum performance.</p><div class="pprice"><sup>$</sup>799</div><div class="pfreq">one-time setup</div><span class="pmo">+ $149 / month</span><div class="phint ph-t">Hover to flip →</div></div><div class="face back"><div class="pname">Hybrid Elite</div><ul class="pl"><li>Premium website — advanced design</li><li>Full AI with custom flows</li><li>Sales &amp; booking automation</li><li>Full lead pipeline management</li><li>Monthly analytics report</li><li>Dedicated account manager</li></ul><p class="note">$149/mo keeps the AI running &amp; supported.</p><a class="cta" href="https://wa.me/96171565356?text=Hi%20Velox%20AI!%20Hybrid%20Elite%20(%24799%2B%24149%2Fmo)." target="_blank" rel="noopener">Start with Hybrid Elite</a></div></div></div>
     </div>
-    <p class="pfine rv">You see the finished website before you pay a dollar. If you don't love it, you owe nothing.</p>
+    <p class="pfine r">// You see the finished website before you pay a dollar. Don't love it? You owe nothing.</p>
   </div>
 </section>
 
-<section class="sec" id="process" data-room="dark">
+<!-- PROCESS -->
+<section class="sec" id="process">
   <div class="wrap">
-    <div class="rv"><div class="eyebrow" style="color:var(--gold-soft)">The Process</div>
-      <h2 class="h2" style="margin-top:20px;color:var(--cream)">Live in three days. <em>We handle everything.</em></h2></div>
-    <div class="steps" id="steps">
-      <svg class="spine" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 120 1000">
-        <path id="spinePath" d="M60 0 C 60 120, 20 160, 20 250 C 20 340, 100 380, 100 500 C 100 620, 20 660, 20 750 C 20 840, 60 880, 60 1000" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <div class="step"><div class="half"><div class="step-card rv-l"><div class="step-k">Step One</div><h3>Tell us about your business</h3><p>We send a short questionnaire — your services, prices, photos, and how you want your website to feel.</p></div></div><div class="step-node">1</div><div class="half empty"></div></div>
-      <div class="step"><div class="half empty"></div><div class="step-node">2</div><div class="half"><div class="step-card rv-r"><div class="step-k">Step Two</div><h3>We design and build</h3><p>We craft your custom website and configure the AI with your exact business information and personality.</p></div></div></div>
-      <div class="step"><div class="half"><div class="step-card rv-l"><div class="step-k">Step Three</div><h3>You review and approve</h3><p>We send a full preview. Request any changes — we make them fast, usually within hours.</p></div></div><div class="step-node">3</div><div class="half empty"></div></div>
-      <div class="step"><div class="half empty"></div><div class="step-node">4</div><div class="half"><div class="step-card rv-r"><div class="step-k">Step Four</div><h3>We go live</h3><p>We launch on your domain. Your website is live and your AI starts answering customers from minute one.</p></div></div></div>
+    <span class="tag r">The process</span>
+    <h2 class="h-lg rl" style="margin-top:20px"><span class="rw"><i>Live in 3 days.</i></span> <span class="rw"><i class="grad">We handle it all.</i></span></h2>
+    <div class="proc">
+      <div class="glass step r"><div class="no">01</div><h3>Tell us about you</h3><p>A short questionnaire — your services, prices, photos and the feel you want.</p></div>
+      <div class="glass step r d1"><div class="no">02</div><h3>We design &amp; build</h3><p>We craft your custom site and train the AI on your exact business.</p></div>
+      <div class="glass step r d2"><div class="no">03</div><h3>You review</h3><p>A full preview. Request any changes — we make them fast, usually within hours.</p></div>
+      <div class="glass step r d3"><div class="no">04</div><h3>We go live</h3><p>Launched on your domain. Your AI starts answering customers from minute one.</p></div>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact" data-room="dark">
-  <div class="c-dark rv-l">
-    <div class="eyebrow">Contact</div>
-    <h2 class="c-h">Ready to build <em>yours?</em></h2>
-    <p class="c-sub">One short conversation, one short questionnaire, and your website is live in three days. That's the whole process.</p>
-    <div class="clinks">
-      <a class="clink mag" href="https://wa.me/96171565356" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></span><span><span class="l">WhatsApp</span><br><span class="v">+961 71 565 356</span></span></a>
-      <a class="clink mag" href="mailto:velox.agency1@gmail.com"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><span class="l">Email</span><br><span class="v">velox.agency1@gmail.com</span></span></a>
-      <a class="clink mag" href="https://instagram.com/get.velox.ai" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></span><span><span class="l">Instagram</span><br><span class="v">@get.velox.ai</span></span></a>
-      <a class="clink mag" href="https://youtube.com/@Velox.Ai" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="3"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5v-5Z" fill="currentColor" stroke="none"/></svg></span><span><span class="l">YouTube</span><br><span class="v">@Velox.Ai</span></span></a>
-    </div>
-    <div class="c-loc">Beirut · Lebanon</div>
+<!-- INTERLUDE 2 -->
+<section class="interlude rev" id="il2">
+  <div class="il-l">
+    <span class="tag r">The multiplier</span>
+    <h2 class="rl" style="margin-top:20px"><span class="rw"><i>Your busiest</i></span> <span class="rw"><i class="grad">employee</i></span><br><span class="rw"><i>never clocks out.</i></span></h2>
+    <p class="r d2">While you sleep, your AI greets every visitor, answers in Arabic or English, and drops qualified leads straight into your WhatsApp.</p>
   </div>
-  <div class="c-light rv-r">
-    <div>
-      <h3 class="f-h">Send us a message</h3>
-      <p class="f-sub">We reply on WhatsApp — usually within the hour.</p>
-      <form id="waForm" novalidate>
-        <div class="frow">
-          <div class="field"><label for="fName">Your name <b>*</b></label><input id="fName" type="text" autocomplete="name" placeholder="Malik Assi" required></div>
-          <div class="field"><label for="fPhone">WhatsApp number</label><input id="fPhone" type="tel" autocomplete="tel" placeholder="+961 71 000 000"></div>
-        </div>
-        <div class="frow one"><div class="field"><label for="fService">Service needed</label><select id="fService"><option>Professional Website — Starter $199</option><option selected>Professional Website — Business $399</option><option>Professional Website — Premium $599</option><option>Hybrid Starter — $299 + $49/mo</option><option>Hybrid Pro — $499 + $99/mo</option><option>Hybrid Elite — $799 + $149/mo</option><option>Not sure yet</option></select></div></div>
-        <div class="frow one"><div class="field"><label for="fMsg">About your business</label><textarea id="fMsg" placeholder="e.g. Dental clinic in Beirut — I want a website and an AI to book appointments."></textarea></div></div>
-        <div class="f-send"><button type="submit" class="btn btn-ink mag" style="border:none;background:none;padding:0;width:100%"><span class="in">Send on WhatsApp <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h11M9 3.5 13.5 8 9 12.5"/></svg></span></button></div>
-        <p class="f-note">No spam, no pressure — just a conversation.</p>
-      </form>
+  <div class="il-r" aria-hidden="true"></div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="tag r">Contact</span>
+    <h2 class="rl" style="margin-top:12px"><span class="rw"><i>Let's build</i></span> <span class="rw"><i class="grad">yours.</i></span></h2>
+    <p class="lead r d2">One short conversation, one short questionnaire — and your website is live in three days.</p>
+    <div class="c-links r d2">
+      <a class="c-link mag" href="https://wa.me/96171565356" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 21l2-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg><span>+961 71 565 356</span></a>
+      <a class="c-link mag" href="mailto:velox.agency1@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>velox.agency1@gmail.com</span></a>
+      <a class="c-link mag" href="https://instagram.com/get.velox.ai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg><span>@get.velox.ai</span></a>
+      <a class="c-link mag" href="https://youtube.com/@Velox.Ai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="3"/><path d="m10.5 9.5 4.5 2.5-4.5 2.5v-5Z" fill="currentColor" stroke="none"/></svg><span>@Velox.Ai</span></a>
     </div>
+    <form class="c-form glass r d3" id="waForm" novalidate style="padding:34px;border-radius:24px">
+      <div class="frow"><div class="field"><label for="fName">Your name <b>*</b></label><input id="fName" type="text" autocomplete="name" placeholder="Malik Assi" required></div><div class="field"><label for="fPhone">WhatsApp</label><input id="fPhone" type="tel" autocomplete="tel" placeholder="+961 71 000 000"></div></div>
+      <div class="frow one"><div class="field"><label for="fService">Service needed</label><select id="fService"><option>Professional Website — Starter $199</option><option selected>Professional Website — Business $399</option><option>Professional Website — Premium $599</option><option>Hybrid Starter — $299 + $49/mo</option><option>Hybrid Pro — $499 + $99/mo</option><option>Hybrid Elite — $799 + $149/mo</option><option>Not sure yet</option></select></div></div>
+      <div class="frow one"><div class="field"><label for="fMsg">About your business</label><textarea id="fMsg" placeholder="e.g. Dental clinic in Beirut — I want a website and an AI to book appointments."></textarea></div></div>
+      <div class="c-send"><button type="submit" class="btn btn-g mag" style="width:100%;border:none"><span class="in">Send on WhatsApp <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12 12 4M6 4h6v6"/></svg></span></button></div>
+      <p class="c-note">No spam, no pressure — just a conversation.</p>
+    </form>
   </div>
 </section>
 </main>
 
-<footer data-room="dark">
-  <div class="fline" id="fline" aria-hidden="true"></div>
+<footer>
   <div class="f-mark" aria-hidden="true">VELOX</div>
   <div class="f-grid">
-    <div class="f-brand"><div class="w"><b>V</b>elox AI</div><p>A digital atelier in Beirut, crafting websites and AI systems for ambitious businesses.</p></div>
-    <div class="f-col"><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#process">Process</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="f-brand"><div class="w"><b>V</b>elox AI</div><p>A digital studio in Beirut, building websites &amp; AI systems for ambitious brands.</p></div>
+    <div class="f-col"><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#work">Work</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#process">Process</a></li><li><a href="#contact">Contact</a></li></ul></div>
     <div class="f-col"><h4>Connect</h4><ul><li><a href="https://wa.me/96171565356" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="https://instagram.com/get.velox.ai" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://youtube.com/@Velox.Ai" target="_blank" rel="noopener">YouTube</a></li><li><a href="mailto:velox.agency1@gmail.com">Email</a></li></ul></div>
   </div>
-  <div class="f-bot"><span>© 2026 Velox AI — Beirut, Lebanon</span><span>velox.agency1@gmail.com</span></div>
+  <div class="f-bot"><span>© 2026 Velox AI — Beirut, Lebanon</span><span>Designed &amp; built in-house</span></div>
 </footer>
 
 <script>
@@ -614,287 +503,205 @@ console.warn( 'Scripts "build/three.js" and "build/three.min.js" are deprecated 
 <script>
 (function(){
 'use strict';
-var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
-var lerp = function(a,b,t){return a+(b-a)*t;};
-var clamp = function(v,a,b){return Math.max(a,Math.min(b,v));};
-var curRoom='light';
+var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+var lerp=function(a,b,t){return a+(b-a)*t;}, clamp=function(v,a,b){return Math.max(a,Math.min(b,v));};
 
-/* ---------- PRELOADER ---------- */
-var loader=document.getElementById('loader'), loadBar=document.getElementById('loadBar'), loadPct=document.getElementById('loadPct');
-var pct=0, pTimer=setInterval(function(){ pct+=Math.random()*16; if(pct>=100){pct=100;clearInterval(pTimer);}
-  loadBar.style.transform='scaleX('+(pct/100)+')'; loadPct.textContent=Math.round(pct); }, reduced?20:130);
-function finish(){ loadBar.style.transform='scaleX(1)';loadPct.textContent='100';
-  setTimeout(function(){loader.classList.add('done');document.body.classList.add('ready');},reduced?0:520); }
-window.addEventListener('load',function(){setTimeout(finish,reduced?0:700);});
-setTimeout(function(){if(!document.body.classList.contains('ready'))finish();},4200);
+/* preloader */
+var load=document.getElementById('load'), loadP=document.getElementById('loadP'), pct=0;
+var pt=setInterval(function(){pct+=Math.random()*15;if(pct>=100){pct=100;clearInterval(pt);}loadP.textContent='LOADING '+Math.round(pct)+'%';},reduced?20:120);
+function done(){loadP.textContent='LOADING 100%';setTimeout(function(){load.classList.add('done');document.body.classList.add('ready');},reduced?0:480);}
+addEventListener('load',function(){setTimeout(done,reduced?0:650);});
+setTimeout(function(){if(!document.body.classList.contains('ready'))done();},4200);
 
-/* ---------- SMOOTH SCROLL (Lenis) ---------- */
+/* smooth scroll */
 var lenis=null, scrollY=window.scrollY||0;
 if(typeof Lenis!=='undefined' && !reduced){
-  lenis=new Lenis({lerp:0.09, wheelMultiplier:0.95, smoothWheel:true});
-  window.__lenis=lenis;
+  lenis=new Lenis({lerp:0.085,wheelMultiplier:0.95,smoothWheel:true}); window.__lenis=lenis;
   lenis.on('scroll',function(e){scrollY=e.scroll;});
   (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})();
-}else{
-  addEventListener('scroll',function(){scrollY=window.scrollY||window.pageYOffset;},{passive:true});
-}
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){ var t=document.querySelector(this.getAttribute('href')); if(!t)return; e.preventDefault();
-    if(lenis)lenis.scrollTo(t,{duration:1.4}); else t.scrollIntoView({behavior:'smooth'}); });
-});
+}else{ addEventListener('scroll',function(){scrollY=window.scrollY||window.pageYOffset;},{passive:true}); }
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(this.getAttribute('href'));if(!t)return;e.preventDefault();if(lenis)lenis.scrollTo(t,{duration:1.5,offset:-20});else t.scrollIntoView({behavior:'smooth'});});});
 
-/* ---------- HERO word-drop ---------- */
-(function(){ var h=document.getElementById('heroH'), i=0;
-  function wrap(node){ Array.prototype.slice.call(node.childNodes).forEach(function(ch){
-    if(ch.nodeType===3){ var frag=document.createDocumentFragment();
-      ch.textContent.split(/(\s+)/).forEach(function(part){ if(!part)return;
-        if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(' '));return;}
-        var w=document.createElement('span');w.className='drop';
-        var inner=document.createElement('i');inner.style.setProperty('--d',(0.1+i*0.075)+'s');inner.textContent=part;
-        w.appendChild(inner);frag.appendChild(w);i++; });
-      node.replaceChild(frag,ch);
-    }else if(ch.nodeType===1 && !ch.classList.contains('drop')){ wrap(ch); } });
-  } wrap(h);
-})();
-
-/* ---------- CURSOR + MAGNETIC ---------- */
+/* cursor + magnetic */
 if(fine && !reduced){
-  var dot=document.getElementById('curDot'), ring=document.getElementById('curRing');
-  var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.transform='translate('+mx+'px,'+my+'px)';},{passive:true});
-  (function cr(){rx=lerp(rx,mx,.18);ry=lerp(ry,my,.18);ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(cr);})();
-  addEventListener('mouseover',function(e){ring.classList.toggle('hot',!!e.target.closest('a,button,.svc,.pc,input,textarea,select'));},{passive:true});
-  document.querySelectorAll('.mag').forEach(function(btn){
-    var inner=btn.querySelector('.in')||btn.querySelector('.w')||btn;
-    btn.addEventListener('mousemove',function(e){ var r=btn.getBoundingClientRect(); inner.style.transition='transform .18s ease-out';
-      inner.style.transform='translate('+((e.clientX-(r.left+r.width/2))*.3)+'px,'+((e.clientY-(r.top+r.height/2))*.4)+'px)'; });
-    btn.addEventListener('mouseleave',function(){inner.style.transition='transform .6s cubic-bezier(.34,1.4,.5,1)';inner.style.transform='translate(0,0)';});
-  });
+  var cd=document.getElementById('cd'),cr=document.getElementById('cr'),mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cd.style.transform='translate('+mx+'px,'+my+'px)';},{passive:true});
+  (function cl(){rx=lerp(rx,mx,.2);ry=lerp(ry,my,.2);cr.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(cl);})();
+  addEventListener('mouseover',function(e){cr.classList.toggle('hot',!!e.target.closest('a,button,.glass,.work,input,textarea,select'));},{passive:true});
+  document.querySelectorAll('.mag').forEach(function(b){var inner=b.querySelector('.in')||b;
+    b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();inner.style.transition='transform .18s ease-out';inner.style.transform='translate('+((e.clientX-(r.left+r.width/2))*.3)+'px,'+((e.clientY-(r.top+r.height/2))*.4)+'px)';});
+    b.addEventListener('mouseleave',function(){inner.style.transition='transform .6s var(--e2)';inner.style.transform='translate(0,0)';});});
 }
 
-/* ---------- ROOM detection ---------- */
-var LIGHT={ '--room-bg-1':'#FFFFFF','--room-text':'#0E0C09','--room-text-soft':'#6A6252','--room-line':'rgba(14,12,9,.10)','--room-eyebrow':'#916413' };
-var DARK ={ '--room-bg-1':'#0E0C09','--room-text':'#FAF7F1','--room-text-soft':'rgba(250,247,241,.55)','--room-line':'rgba(255,255,255,.12)','--room-eyebrow':'#E8C879' };
-function applyRoom(room){ if(room===curRoom)return; curRoom=room;
-  var vars=room==='dark'?DARK:LIGHT, rs=document.documentElement.style;
-  for(var k in vars) rs.setProperty(k,vars[k]);
-  document.body.dataset.room=room;
-  var grad=document.getElementById('roomGrad');
-  grad.style.setProperty('--glow-a', room==='dark'?'rgba(201,146,42,.24)':'rgba(201,146,42,.10)');
-  grad.style.setProperty('--glow-b', room==='dark'?'rgba(232,200,121,.10)':'rgba(14,12,9,.05)');
-}
-document.body.dataset.room='light';
-/* deterministic room detection — whichever section owns the viewport centre wins */
-var roomSecs=[];
-function collectRooms(){ roomSecs=[]; document.querySelectorAll('[data-room]').forEach(function(el){
-  var r=el.getBoundingClientRect(); roomSecs.push({top:r.top+scrollY, bottom:r.top+scrollY+el.offsetHeight, room:el.dataset.room||'light'}); }); }
-function updateRoom(){ var c=scrollY+innerHeight*0.5;
-  for(var i=roomSecs.length-1;i>=0;i--){ if(c>=roomSecs[i].top && c<roomSecs[i].bottom){ applyRoom(roomSecs[i].room); return; } } }
+/* reveals */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add('in');
+  if(e.target.classList.contains('num-v'))counter(e.target);io.unobserve(e.target);});},{threshold:.18,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.r,.rl,.zoom,.num-v').forEach(function(el){io.observe(el);});
+function counter(cell){var s=cell.querySelector('.count');if(!s)return;var to=parseInt(s.dataset.to,10);if(reduced){s.textContent=to;return;}
+  var t0=null;(function tk(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1500),e=1-Math.pow(1-p,4);s.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(tk);})(performance.now());}
 
-/* ---------- REVEALS / SPLIT / COUNTERS ---------- */
-var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(!e.isIntersecting)return;
-  e.target.classList.add('in'); if(e.target.classList.contains('num-v'))counter(e.target); io.unobserve(e.target); }); },
-  {threshold:.2,rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-z,.zoom,.split,.num-v,#fline').forEach(function(el){io.observe(el);});
-document.querySelectorAll('.split').forEach(function(el){
-  var wlk=document.createTreeWalker(el,NodeFilter.SHOW_TEXT), tn=[]; while(wlk.nextNode())tn.push(wlk.currentNode); var ci=0;
-  tn.forEach(function(t){ var frag=document.createDocumentFragment();
-    t.textContent.split(' ').forEach(function(word,wi,arr){ var w=document.createElement('span');w.className='split-w';
-      word.split('').forEach(function(chr){var s=document.createElement('span');s.className='split-c';s.style.transitionDelay=(ci*0.018)+'s';s.textContent=chr;w.appendChild(s);ci++;});
-      frag.appendChild(w); if(wi<arr.length-1)frag.appendChild(document.createTextNode(' ')); });
-    t.parentNode.replaceChild(frag,t); });
-});
-function counter(cell){ var span=cell.querySelector('.count'); if(!span)return; var to=parseInt(span.dataset.to,10);
-  if(reduced){span.textContent=to;return;} var t0=null;
-  (function tick(ts){ if(!t0)t0=ts; var p=Math.min(1,(ts-t0)/1600), e=1-Math.pow(1-p,4);
-    span.textContent=Math.round(to*e); if(p<1)requestAnimationFrame(tick); })(performance.now()); }
-
-/* ---------- SCROLL-DRIVEN ---------- */
-var hs=document.querySelector('.hs'), hsTrack=document.getElementById('hsTrack'), hsBar=document.getElementById('hsBar');
-var stepsEl=document.getElementById('steps'), spinePath=document.getElementById('spinePath'), spineLen=0, desktopHS=false;
-function sizeHS(){ desktopHS=innerWidth>900;
-  if(desktopHS)hs.style.height=(hsTrack.scrollWidth - innerWidth + innerHeight*1.4)+'px';
-  else{hs.style.height='';hsTrack.style.transform='';} }
-function sizeSpine(){ if(!spinePath)return; spineLen=spinePath.getTotalLength(); spinePath.style.strokeDasharray=spineLen; spinePath.style.strokeDashoffset=reduced?0:spineLen; }
-function onResize(){ sizeHS(); sizeSpine(); collectRooms(); if(lenis)lenis.resize(); }
-addEventListener('resize',onResize); sizeHS(); sizeSpine(); collectRooms();
-function scrollUpdate(){ var y=scrollY;
-  document.getElementById('nav').classList.toggle('small', y>70);
-  updateRoom();
-  if(desktopHS){ var r=hs.getBoundingClientRect(), total=hs.offsetHeight-innerHeight;
-    var pr=clamp(-r.top/total,0,1), dist=hsTrack.scrollWidth-innerWidth+(innerWidth*0.08);
-    hsTrack.style.transform='translate3d('+(-pr*dist)+'px,0,0)'; if(hsBar)hsBar.style.transform='scaleX('+pr+')'; }
-  if(spineLen && !reduced){ var sr=stepsEl.getBoundingClientRect();
-    var sp=clamp((innerHeight*0.78 - sr.top)/sr.height,0,1); spinePath.style.strokeDashoffset=spineLen*(1-sp); }
-}
-
-/* ═══════════════ THREE.JS ═══════════════ */
-(function initGL(){
-  if(typeof THREE==='undefined'){document.body.classList.add('no-webgl');return;}
-  var canvas=document.getElementById('c'), gl;
-  try{ gl=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true,powerPreference:'high-performance'}); }
-  catch(e){ document.body.classList.add('no-webgl'); return; }
-  if(!gl||!gl.getContext()){ document.body.classList.add('no-webgl'); return; }
-
-  var mob=innerWidth<760;
-  gl.setPixelRatio(Math.min(devicePixelRatio||1, mob?1.4:1.9));
-  gl.setSize(innerWidth,innerHeight);
-  gl.shadowMap.enabled=true; gl.shadowMap.type=THREE.PCFSoftShadowMap;
-  gl.toneMapping=THREE.ACESFilmicToneMapping; gl.toneMappingExposure=1.12;
-  if('outputColorSpace' in gl)gl.outputColorSpace=THREE.SRGBColorSpace;
-
-  var scene=new THREE.Scene();
-  var camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,0.1,100);
-  camera.position.set(0,0,7.4);
-
-  function buildEnv(){
-    var cv=document.createElement('canvas');cv.width=512;cv.height=256;var x=cv.getContext('2d');
-    var g=x.createLinearGradient(0,0,0,256);g.addColorStop(0,'#fff');g.addColorStop(.5,'#efe7d8');g.addColorStop(1,'#fff');
-    x.fillStyle=g;x.fillRect(0,0,512,256);
-    function blob(cx,cy,r,c){var rg=x.createRadialGradient(cx,cy,0,cx,cy,r);rg.addColorStop(0,c);rg.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=rg;x.fillRect(0,0,512,256);}
-    blob(150,66,150,'rgba(201,146,42,.9)');blob(390,205,150,'rgba(190,205,225,.85)');blob(430,40,90,'rgba(255,255,255,.95)');
-    var tex=new THREE.CanvasTexture(cv);tex.mapping=THREE.EquirectangularReflectionMapping;if('colorSpace' in tex)tex.colorSpace=THREE.SRGBColorSpace;
-    var p=new THREE.PMREMGenerator(gl),e=p.fromEquirectangular(tex).texture;p.dispose();tex.dispose();return e;
+/* animated code flow */
+(function(){
+  var cf=document.getElementById('codeflow'); if(!cf)return;
+  var snips=[
+    'const velox = await ai.train({ brand, tone, faqs });\nvelox.on("message", reply => lead.capture(reply));\nawait site.deploy({ live: true, days: 3 });',
+    'function bookAppointment(lead){\n  const slot = calendar.next(lead.pref);\n  return whatsapp.confirm(lead, slot);\n}',
+    'export const hero = () => (\n  <Scene light="gold" motion="smooth">\n    <Mesh geometry="knot" rotate />\n  </Scene>\n);',
+    '// lead qualified → notify\nif (lead.score > 0.8) {\n  notify.whatsapp(owner, lead);\n}'
+  ];
+  for(var i=0;i<snips.length;i++){
+    var pre=document.createElement('pre'); pre.textContent=snips[i]; if(i%2)pre.className='c2';
+    pre.style.left=(6+Math.random()*70)+'%'; pre.style.top=(Math.random()*80)+'%';
+    pre.dataset.sp=(0.02+Math.random()*0.05).toFixed(3); pre.dataset.base=parseFloat(pre.style.top);
+    cf.appendChild(pre);
   }
-  var envMap=buildEnv(); scene.environment=envMap;
+})();
+var codeEls=Array.prototype.slice.call(document.querySelectorAll('.codeflow pre'));
+
+/* nav + scroll-driven */
+var nav=document.getElementById('nav'), workTrack=document.getElementById('workTrack');
+function scrollUpdate(){
+  nav.classList.toggle('small',scrollY>70);
+  if(!reduced){ for(var i=0;i<codeEls.length;i++){var el=codeEls[i];el.style.transform='translateY('+(-scrollY*parseFloat(el.dataset.sp))+'px)';} }
+  if(workTrack && innerWidth>820){ var r=workTrack.parentElement.parentElement.getBoundingClientRect();
+    var p=clamp((innerHeight-r.top)/(innerHeight+r.height),0,1); var max=workTrack.scrollWidth-workTrack.parentElement.offsetWidth;
+    if(max>0)workTrack.style.transform='translateX('+(-p*max*0.5)+'px)'; }
+}
+(function loop(){scrollUpdate();requestAnimationFrame(loop);})();
+
+/* ═══ THREE.JS — morphing sculpture that shifts side to side ═══ */
+(function(){
+  if(typeof THREE==='undefined'){document.body.classList.add('no-webgl');return;}
+  var canvas=document.getElementById('c'),gl;
+  try{gl=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true,powerPreference:'high-performance'});}catch(e){document.body.classList.add('no-webgl');return;}
+  if(!gl||!gl.getContext()){document.body.classList.add('no-webgl');return;}
+  var mob=innerWidth<760;
+  gl.setPixelRatio(Math.min(devicePixelRatio||1,mob?1.4:1.9));
+  gl.setSize(innerWidth,innerHeight);
+  gl.toneMapping=THREE.ACESFilmicToneMapping; gl.toneMappingExposure=1.15;
+  if('outputColorSpace' in gl)gl.outputColorSpace=THREE.SRGBColorSpace;
+  var scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,0.1,100); camera.position.set(0,0,7.2);
+
+  function env(){var cv=document.createElement('canvas');cv.width=512;cv.height=256;var x=cv.getContext('2d');
+    x.fillStyle='#0a0910';x.fillRect(0,0,512,256);
+    function b(cx,cy,r,c){var g=x.createRadialGradient(cx,cy,0,cx,cy,r);g.addColorStop(0,c);g.addColorStop(1,'rgba(10,9,16,0)');x.fillStyle=g;x.fillRect(0,0,512,256);}
+    b(150,60,160,'rgba(224,176,82,.95)');b(380,200,150,'rgba(120,130,255,.5)');b(430,50,90,'rgba(255,255,255,.7)');
+    var t=new THREE.CanvasTexture(cv);t.mapping=THREE.EquirectangularReflectionMapping;if('colorSpace' in t)t.colorSpace=THREE.SRGBColorSpace;
+    var p=new THREE.PMREMGenerator(gl),e=p.fromEquirectangular(t).texture;p.dispose();t.dispose();return e;}
+  var envMap=env(); scene.environment=envMap;
 
   var rig=new THREE.Group(); scene.add(rig);
-  var geo=new THREE.TorusKnotGeometry(1.05,0.34,280,42,2,3);
-  var mat=new THREE.MeshPhysicalMaterial({color:0xE0B45E,metalness:1,roughness:0.13,envMap:envMap,envMapIntensity:1.6,clearcoat:1,clearcoatRoughness:0.1,emissive:0x3a2708,emissiveIntensity:0});
-  if('iridescence' in mat){mat.iridescence=0.7;mat.iridescenceIOR=1.4;mat.iridescenceThicknessRange=[120,500];}
-  var knot=new THREE.Mesh(geo,mat); knot.castShadow=true; rig.add(knot);
-  var core=new THREE.Mesh(new THREE.IcosahedronGeometry(0.4,2),new THREE.MeshStandardMaterial({color:0xFFF3DC,metalness:.9,roughness:.25,envMap:envMap,envMapIntensity:1,emissive:0x2a1d05,emissiveIntensity:0}));
-  knot.add(core);
-  var sat=new THREE.Mesh(new THREE.SphereGeometry(0.09,24,24),new THREE.MeshStandardMaterial({color:0xE8C879,metalness:1,roughness:.2,envMap:envMap,envMapIntensity:1.2}));
-  var satPivot=new THREE.Group(); satPivot.add(sat); sat.position.set(2.1,0,0); rig.add(satPivot);
+  /* several shapes, crossfade one per section */
+  var mkMat=function(){var m=new THREE.MeshPhysicalMaterial({color:0xE0B052,metalness:1,roughness:0.16,envMap:envMap,envMapIntensity:1.7,clearcoat:1,clearcoatRoughness:0.12,emissive:0x2a1c04,emissiveIntensity:0.35,transparent:true,opacity:0});if('iridescence' in m){m.iridescence=0.5;m.iridescenceIOR=1.4;}return m;};
+  var geos=[
+    new THREE.IcosahedronGeometry(1.45,0),
+    new THREE.TorusKnotGeometry(1.0,0.32,220,36,2,3),
+    new THREE.OctahedronGeometry(1.5,0),
+    new THREE.DodecahedronGeometry(1.45,0),
+    new THREE.TorusGeometry(1.25,0.42,28,120),
+    new THREE.IcosahedronGeometry(1.4,1)
+  ];
+  var shapes=geos.map(function(g){var mesh=new THREE.Mesh(g,mkMat());rig.add(mesh);return mesh;});
+  /* orbiting wireframe shell + satellites "turning around" the object */
+  var shell=new THREE.Mesh(new THREE.IcosahedronGeometry(2.15,1),new THREE.MeshBasicMaterial({color:0xE0B052,wireframe:true,transparent:true,opacity:0.1}));
+  rig.add(shell);
+  var ring=new THREE.Mesh(new THREE.TorusGeometry(2.4,0.012,8,140),new THREE.MeshBasicMaterial({color:0xE0B052,transparent:true,opacity:0.35}));
+  ring.rotation.x=Math.PI/2.2; rig.add(ring);
+  var satG=new THREE.Group(); rig.add(satG);
+  for(var s=0;s<3;s++){var sat=new THREE.Mesh(new THREE.SphereGeometry(0.07,20,20),new THREE.MeshStandardMaterial({color:0xF3D89A,metalness:1,roughness:.2,envMap:envMap,envMapIntensity:1.4}));
+    sat.position.set(Math.cos(s*2.1)*2.4,Math.sin(s*1.7)*0.6,Math.sin(s*2.1)*2.4); satG.add(sat);}
 
-  scene.add(new THREE.HemisphereLight(0xffffff,0xece4d6,0.5));
-  scene.add(new THREE.AmbientLight(0xffffff,0.22));
-  var gold=new THREE.DirectionalLight(0xF0C878,2.6); gold.position.set(-4,5,3); gold.castShadow=true;
-  gold.shadow.mapSize.set(1024,1024); gold.shadow.radius=9; gold.shadow.bias=-0.0006;
-  gold.shadow.camera.near=1; gold.shadow.camera.far=22; gold.shadow.camera.left=-7;gold.shadow.camera.right=7;gold.shadow.camera.top=7;gold.shadow.camera.bottom=-7;
-  scene.add(gold);
-  var cool=new THREE.PointLight(0xBFD2EA,26,32); cool.position.set(4,-3,4); scene.add(cool);
-  var rim=new THREE.PointLight(0xffffff,16,32); rim.position.set(2,4,-4); scene.add(rim);
+  scene.add(new THREE.HemisphereLight(0x8899ff,0x120e08,0.4));
+  scene.add(new THREE.AmbientLight(0xffffff,0.12));
+  var key=new THREE.DirectionalLight(0xffe6b0,2.2); key.position.set(-4,5,4); scene.add(key);
+  var cool=new THREE.PointLight(0x8ea0ff,30,40); cool.position.set(5,-3,3); scene.add(cool);
+  var rimL=new THREE.PointLight(0xE0B052,26,40); rimL.position.set(0,2,-6); scene.add(rimL);
 
-  var ground=new THREE.Mesh(new THREE.PlaneGeometry(30,30),new THREE.ShadowMaterial({opacity:0.16}));
-  ground.rotation.x=-Math.PI/2; ground.position.y=-2.5; ground.receiveShadow=true; scene.add(ground);
-
-  var P=mob?90:200, pg=new THREE.BufferGeometry(), pp=new Float32Array(P*3), sp=new Float32Array(P);
-  for(var i=0;i<P;i++){pp[i*3]=(Math.random()-.5)*18;pp[i*3+1]=(Math.random()-.5)*12;pp[i*3+2]=(Math.random()-.5)*8-1;sp[i]=0.05+Math.random()*0.14;}
-  pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
-  var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xC9922A,size:0.03,transparent:true,opacity:0.5,depthWrite:false}));
-  scene.add(pts);
-
+  /* sections define x-lane (right/left alternating), scale, shape */
   var anchors=[];
   function collect(){
-    /* prominent only where a lane is reserved (hero right, showcase right); faded elsewhere → never overlaps text */
-    var defs=[
-      ['#top',      3.15, 0.15, 1.05,-.15, .25, 1.0],
-      ['.marquee',  4.4,  0.0,  0.55, .2, -.4, 0.16],
-      ['#services', 4.7,  0.4,  0.5,  .3, -.7, 0.12],
-      ['.showcase', 3.2,  0.0,  1.0, -.1,  .5, 1.0],
-      ['#numbers',  4.6, -0.4,  0.5,  .12,-.6, 0.12],
-      ['#pricing',  4.7, -1.0,  0.5,  .12,-.9, 0.10],
-      ['#process', -0.1,  0.0,  0.75,-.2, 1.1, 0.30],
-      ['#contact',  4.7,  1.0,  0.5,  .15,-1.4,0.08]
+    /* [selector, shapeIdx, xSign(+right/-left), opacity]  — object blooms only where a lane is reserved */
+    var secs=[
+      ['#top',      0,  1, 1.0],
+      ['#services', 1, -1, 0.0],
+      ['#work',     2,  1, 0.0],
+      ['#il1',      1,  1, 1.0],
+      ['#numbers',  2, -1, 0.0],
+      ['#pricing',  3,  1, 0.0],
+      ['#process',  4, -1, 0.0],
+      ['#il2',      3, -1, 1.0],
+      ['#contact',  5,  1, 0.0]
     ];
+    var laneX=mob?2.2:3.1;
     anchors=[];
-    defs.forEach(function(d){ var el=document.querySelector(d[0]); if(!el)return;
-      var r=el.getBoundingClientRect(), top=r.top+scrollY;
-      anchors.push({pos:top+el.offsetHeight/2-innerHeight/2,x:d[1],y:d[2],s:d[3],rx:d[4],ry:d[5],op:d[6]}); });
+    secs.forEach(function(d,i){var el=document.querySelector(d[0]);if(!el)return;var r=el.getBoundingClientRect(),top=r.top+scrollY;
+      anchors.push({pos:top+el.offsetHeight/2-innerHeight/2, x:d[2]*laneX, y:0.0, s:(mob?0.6:1)*(d[3]>0?1.0:0.7), shape:d[1], op:d[3]});});
     anchors.sort(function(a,b){return a.pos-b.pos;});
   }
-  collect(); addEventListener('resize',function(){mob=innerWidth<760;collect();});
+  collect(); addEventListener('resize',function(){mob=innerWidth<760;collect();camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();gl.setSize(innerWidth,innerHeight);});
 
-  var cur={x:anchors[0].x,y:anchors[0].y,s:anchors[0].s,rx:0,ry:0,op:1};
-  function sample(){ var y=scrollY;
-    if(!anchors.length)return cur;
+  var cur={x:anchors[0].x,y:anchors[0].y,s:anchors[0].s,shape:0,op:1};
+  function sample(){var y=scrollY;if(!anchors.length)return cur;
     if(y<=anchors[0].pos)return anchors[0];
     if(y>=anchors[anchors.length-1].pos)return anchors[anchors.length-1];
-    for(var i=0;i<anchors.length-1;i++){var a=anchors[i],b=anchors[i+1];
-      if(y>=a.pos&&y<=b.pos){var t=(y-a.pos)/(b.pos-a.pos),e=t*t*(3-2*t);
-        return{x:lerp(a.x,b.x,e),y:lerp(a.y,b.y,e),s:lerp(a.s,b.s,e),rx:lerp(a.rx,b.rx,e),ry:lerp(a.ry,b.ry,e),op:lerp(a.op,b.op,e)};}}
-    return cur;
-  }
+    for(var i=0;i<anchors.length-1;i++){var a=anchors[i],b=anchors[i+1];if(y>=a.pos&&y<=b.pos){var t=(y-a.pos)/(b.pos-a.pos),e=t*t*(3-2*t);
+      return{x:lerp(a.x,b.x,e),y:lerp(a.y,b.y,e),s:lerp(a.s,b.s,e),op:lerp(a.op,b.op,e),shape:e<0.5?a.shape:b.shape,blend:e,a:a.shape,b:b.shape};}}
+    return cur;}
 
   var tmx=0,tmy=0,cmx=0,cmy=0;
-  if(fine && !reduced)addEventListener('mousemove',function(e){tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;},{passive:true});
-  addEventListener('resize',function(){mob=innerWidth<760;camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();gl.setSize(innerWidth,innerHeight);});
-
+  if(fine&&!reduced)addEventListener('mousemove',function(e){tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5;},{passive:true});
   var vis=true; document.addEventListener('visibilitychange',function(){vis=!document.hidden;});
-  var t0=performance.now();
-  (function frame(now){
-    requestAnimationFrame(frame);
-    if(!vis)return;
-    var dt=Math.min(0.05,(now-t0)/1000); t0=now; var time=now/1000;
-    cmx=lerp(cmx,tmx,.05); cmy=lerp(cmy,tmy,.05);
-    var tg=sample(), k=reduced?1:0.055;
+  var t0=performance.now(), curShape=0;
+  (function frame(now){requestAnimationFrame(frame);if(!vis)return;
+    var dt=Math.min(0.05,(now-t0)/1000);t0=now;var time=now/1000;
+    cmx=lerp(cmx,tmx,.05);cmy=lerp(cmy,tmy,.05);
+    var tg=sample(),k=reduced?1:0.06;
     cur.x=lerp(cur.x,tg.x,k);cur.y=lerp(cur.y,tg.y,k);cur.s=lerp(cur.s,tg.s,k);
-    cur.rx=lerp(cur.rx,tg.rx,k);cur.ry=lerp(cur.ry,tg.ry,k);cur.op=lerp(cur.op,(tg.op==null?1:tg.op),0.07);
-    var mSc=mob?0.6:1, mPx=mob?1.12:1;
+    cur.op=lerp(cur.op,(tg.op==null?1:tg.op),0.08);
     var heroEnv=Math.max(0,1-scrollY/(innerHeight*0.9));
-    rig.position.x=cur.x*mPx+cmx*0.8; rig.position.y=cur.y-cmy*0.6; rig.position.z=heroEnv*1.2;
-    rig.scale.setScalar(cur.s*mSc*(1+heroEnv*0.4));
-    if(!reduced){ knot.rotation.y+=dt*0.26; knot.rotation.x+=dt*0.09; core.rotation.y-=dt*0.4; satPivot.rotation.y+=dt*0.5; satPivot.rotation.x=Math.sin(time*0.3)*0.4; }
-    rig.rotation.x=cur.rx+cmy*0.35; rig.rotation.y=cur.ry+cmx*0.45;
-    var darkAmt=curRoom==='dark'?1:0;
-    mat.emissiveIntensity=lerp(mat.emissiveIntensity, darkAmt*0.5, 0.05);
-    core.material.emissiveIntensity=lerp(core.material.emissiveIntensity, darkAmt*0.7, 0.05);
-    rim.intensity=reduced?16:16+Math.sin(time*0.8)*4+darkAmt*10;
-    var op=cur.op;
-    mat.transparent=op<0.995;mat.opacity=op;
-    core.material.transparent=op<0.995;core.material.opacity=op;
-    sat.material.transparent=op<0.995;sat.material.opacity=op;
-    pts.material.opacity=0.45*Math.max(op,0.3);
-    ground.material.opacity=0.16*Math.min(1,op+0.15);
-    if(!reduced){
-      gold.position.x=-4+Math.sin(time*0.4)*1.6; gold.position.y=5+Math.cos(time*0.33)*0.8; gold.intensity=2.3+Math.sin(time*0.6)*0.5;
-      cool.position.x=4+Math.cos(time*0.5)*1.4; cool.position.y=-3+Math.sin(time*0.45)*1.2;
-      var pa=pg.attributes.position.array;
-      for(var j=0;j<P;j++){pa[j*3+1]+=sp[j]*dt;if(pa[j*3+1]>6){pa[j*3+1]=-6;pa[j*3]=(Math.random()-.5)*18;}}
-      pg.attributes.position.needsUpdate=true; pts.rotation.y=time*0.02;
+    rig.position.x=cur.x+cmx*0.7; rig.position.y=cur.y-cmy*0.5; rig.position.z=heroEnv*1.0;
+    rig.scale.setScalar(cur.s*(1+heroEnv*0.35));
+    if(!reduced){rig.rotation.y+=dt*0.22;rig.rotation.x=lerp(rig.rotation.x,cmy*0.4-0.1,0.04);rig.rotation.y+=0;
+      satG.rotation.y+=dt*0.5;satG.rotation.x=Math.sin(time*0.3)*0.3;shell.rotation.y-=dt*0.12;shell.rotation.x+=dt*0.05;ring.rotation.z+=dt*0.3;}
+    rig.rotation.y+=cmx*0.0;
+    /* crossfade shapes */
+    var ai=(tg.a!=null?tg.a:tg.shape), bi=(tg.b!=null?tg.b:tg.shape), bl=(tg.blend!=null?tg.blend:0);
+    for(var i=0;i<shapes.length;i++){
+      var target = (i===bi? bl : (i===ai? 1-bl : 0));
+      if(bi===ai) target=(i===ai?1:0);
+      target*=cur.op;                                   /* hide over dense content sections */
+      var m=shapes[i].material; m.opacity=lerp(m.opacity,target,0.12);
+      shapes[i].rotation.y+=dt*(0.1+i*0.02); shapes[i].rotation.x+=dt*0.04;
+      shapes[i].visible=m.opacity>0.01;
     }
+    shell.material.opacity=lerp(shell.material.opacity,0.1*cur.op,0.1);
+    ring.material.opacity=lerp(ring.material.opacity,0.35*cur.op,0.1);
+    satG.children.forEach(function(sm){sm.material.opacity=lerp(sm.material.opacity==null?1:sm.material.opacity,cur.op,0.1);sm.material.transparent=true;});
+    rimL.intensity=24+Math.sin(time*0.7)*6; key.position.x=-4+Math.sin(time*0.35)*1.4;
     gl.render(scene,camera);
   })(performance.now());
 })();
 
-(function loop(){ scrollUpdate(); requestAnimationFrame(loop); })();
-
-/* ---------- PRICING toggle + flip ---------- */
-var toggle=document.getElementById('toggle'),tabWeb=document.getElementById('tabWeb'),tabHyb=document.getElementById('tabHyb'),
-    plansWeb=document.getElementById('plansWeb'),plansHyb=document.getElementById('plansHyb');
-function pick(w){var web=w==='web';toggle.classList.toggle('alt',!web);
-  tabWeb.classList.toggle('on',web);tabWeb.setAttribute('aria-selected',web);
-  tabHyb.classList.toggle('on',!web);tabHyb.setAttribute('aria-selected',!web);
-  plansWeb.classList.toggle('on',web);plansHyb.classList.toggle('on',!web);
-  (web?plansWeb:plansHyb).querySelectorAll('.rv').forEach(function(el){el.classList.add('in');});}
+/* pricing toggle + flip */
+var toggle=document.getElementById('toggle'),tabWeb=document.getElementById('tabWeb'),tabHyb=document.getElementById('tabHyb'),plansWeb=document.getElementById('plansWeb'),plansHyb=document.getElementById('plansHyb');
+function pick(w){var web=w==='web';toggle.classList.toggle('alt',!web);tabWeb.classList.toggle('on',web);tabHyb.classList.toggle('on',!web);
+  plansWeb.classList.toggle('on',web);plansHyb.classList.toggle('on',!web);(web?plansWeb:plansHyb).querySelectorAll('.r').forEach(function(el){el.classList.add('in');});}
 tabWeb.addEventListener('click',function(){pick('web');});tabHyb.addEventListener('click',function(){pick('hyb');});
-document.querySelectorAll('.pc').forEach(function(card){card.addEventListener('click',function(e){if(e.target.closest('a'))return;card.classList.toggle('flip');});});
-if(!fine){document.querySelectorAll('.plans').forEach(function(p){p.classList.add('touch');});document.querySelectorAll('.ph-t').forEach(function(t){t.textContent="Tap to see what's inside";});}
+document.querySelectorAll('.pc').forEach(function(c){c.addEventListener('click',function(e){if(e.target.closest('a'))return;c.classList.toggle('flip');});});
+if(!fine){document.querySelectorAll('.plans').forEach(function(p){p.classList.add('touch');});document.querySelectorAll('.ph-t').forEach(function(t){t.textContent='Tap to flip →';});}
 
-/* ---------- SERVICE tilt ---------- */
-if(fine && !reduced){
-  document.querySelectorAll('.tilt').forEach(function(card){ var raf=null;
-    card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();
-      var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
-      if(raf)cancelAnimationFrame(raf);
-      raf=requestAnimationFrame(function(){card.style.transition='box-shadow .6s var(--ease)';
-        card.style.transform='perspective(950px) rotateX('+(-py*7)+'deg) rotateY('+(px*8)+'deg) translateZ(12px)';});});
-    card.addEventListener('mouseleave',function(){if(raf)cancelAnimationFrame(raf);
-      card.style.transition='transform .9s var(--bounce),box-shadow .6s var(--ease)';
-      card.style.transform='perspective(950px) rotateX(0) rotateY(0) translateZ(0)';});
-  });
-}
+/* tilt */
+if(fine&&!reduced){document.querySelectorAll('.tilt').forEach(function(card){var raf=null;
+  card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+    if(raf)cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){card.style.transition='box-shadow .5s var(--e)';card.style.transform='perspective(900px) rotateX('+(-py*6)+'deg) rotateY('+(px*7)+'deg) translateZ(8px)';});});
+  card.addEventListener('mouseleave',function(){if(raf)cancelAnimationFrame(raf);card.style.transition='transform .8s var(--e2),box-shadow .5s';card.style.transform='none';});});}
 
-/* ---------- FORM → WhatsApp ---------- */
-document.getElementById('waForm').addEventListener('submit',function(e){ e.preventDefault();
-  var name=document.getElementById('fName').value.trim(); if(!name){document.getElementById('fName').focus();return;}
-  var phone=document.getElementById('fPhone').value.trim(), svc=document.getElementById('fService').value, msg=document.getElementById('fMsg').value.trim();
+/* form */
+document.getElementById('waForm').addEventListener('submit',function(e){e.preventDefault();var name=document.getElementById('fName').value.trim();if(!name){document.getElementById('fName').focus();return;}
+  var phone=document.getElementById('fPhone').value.trim(),svc=document.getElementById('fService').value,msg=document.getElementById('fMsg').value.trim();
   var text='Hi Velox AI! My name is '+name+'.'+(phone?' My WhatsApp: '+phone+'.':'')+' I\'m interested in: '+svc+'.'+(msg?' About my business: '+msg:'');
-  window.open('https://wa.me/96171565356?text='+encodeURIComponent(text),'_blank','noopener');
-});
+  window.open('https://wa.me/96171565356?text='+encodeURIComponent(text),'_blank','noopener');});
 })();
 </script>
 </body>
