@@ -237,3 +237,10 @@ h1,h2,h3,h4{font-family:var(--f-serif);font-weight:400;line-height:1.08;letter-s
 .foot-col a,.foot-col p{display:block;color:var(--on-dark-mut);font-size:14px;padding:6px 0;transition:color .35s}
 .foot-col a:hover{color:#fff}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:36px;font-size:11.5px;color:var(--on-dark-mut);letter-spacing:.04em}
+
+/* ---------- made by Velox ---------- */
+.velox{background:#F3F1ED;text-align:center;padding:clamp(48px,9vh,100px) var(--pad)}
+.velox-made{display:block;font-family:var(--f-serif);font-style:italic;font-size:clamp(1.35rem,2.6vw,2.1rem);color:var(--muted);margin-bottom:clamp(14px,2vw,22px);letter-spacing:.01em}
+.velox-logo{display:inline-block;height:clamp(60px,9vw,96px);width:auto;transition:transform .5s var(--e),opacity .4s}
+a.velox-logo-link{display:inline-block}
+a.velox-logo-link:hover .velox-logo{transform:translateY(-3px)}
